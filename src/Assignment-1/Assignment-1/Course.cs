@@ -13,6 +13,12 @@ namespace Assignment
 		public List<Topic> Topics { get; set; }
 		public double Fees { get; set; }
 		public List<AdmissionTest> Tests { get; set; }
+
+		public  void Add()
+        {
+			int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(n);
+        }
 	}
 
 	public class AdmissionTest
