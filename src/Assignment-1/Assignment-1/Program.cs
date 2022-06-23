@@ -112,8 +112,10 @@ void Json_Convertor(Type T)
             Console.WriteLine($"Plese press 'Enter' and Ready to  Move '{p.PropertyType.Name}'" +
                             $" class");
             Console.ReadKey();
+            Json += $"\"{p.Name}\" : [";
+            Json += "{";
             Json_Convertor(p.PropertyType);
-
+            Json += "} \n],";
 
         }
         
