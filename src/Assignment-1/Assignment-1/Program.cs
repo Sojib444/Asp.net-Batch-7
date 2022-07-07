@@ -16,7 +16,7 @@ string Name = Console.ReadLine();
 
 Type? take_a_type = assembly.GetType($"Assignment.{Name}");
 
-//Same method signeture which you want.
+//Same method signature which you want.
 
 string json=JsonFormatter.Convert_(take_a_type);
 
