@@ -12,24 +12,15 @@ namespace Assignment_1
     public class JsonFormatter
     {
 
-        public static void Convert_Json()
+
+        public static string Convert_(object item)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            Type[] types = assembly.GetTypes();
-            Console.WriteLine("All those class that are present in the Assembly \n");
-            foreach (Type t in types)
-            {
-                Console.WriteLine(t.Name);
-            }
-            Console.WriteLine();
-            Console.WriteLine("Please type this class Name which you work with");
-            string Name = Console.ReadLine();
 
-            Type? take_a_type = assembly.GetType($"Assignment.{Name}");
+            Type? take_a_type =(Type) item;
 
 
 
-            String Json = "";
+            string Json = "";
             //Working for Json
             Json += "{";
 
@@ -160,10 +151,9 @@ namespace Assignment_1
 
             Json_Convertor(take_a_type);
             Json += "}";
+            
 
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------Convert Object JSON-----------------------\n");
-            Console.WriteLine(Json);
+            return Json;
         }
     }
 }
