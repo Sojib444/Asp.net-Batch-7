@@ -45,7 +45,7 @@ namespace Assignment_1
                 {
                     if (proerties[i].PropertyType.IsPrimitive)
                     {
-                        Console.Write($"The '{proerties[i].Name}' of the {T.Name} = ");
+                        Console.Write($"The '{proerties[i].Name}' of the {T.Name} and the Property Type {proerties[i].PropertyType} = ");
                         string? value = Console.ReadLine();
                         object? instance = Activator.CreateInstance(T);
                         proerties[i].SetValue(instance, Convert.ChangeType(value, proerties[i].PropertyType));
