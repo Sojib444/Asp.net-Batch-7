@@ -82,7 +82,7 @@ namespace Assignment_1
                             $" class");
                             Console.ReadKey();
                             Console.Write($"\nHow Many {generics_paramerters[j].Name} for " +
-                                $"{generics_paramerters[j].Name}  Do You want to Add? = ");
+                                $"{proerties[i].Name}  Do You want to Add? = ");
                             int w = Convert.ToInt32(Console.ReadLine());
                             for (int k = 1; k <= w; k++)
                             {
