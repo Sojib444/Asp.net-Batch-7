@@ -12,7 +12,7 @@ foreach (Type t in types)
 }
 Console.WriteLine();
 
-Console.WriteLine("Please type this class Name which you work with");
+Console.WriteLine("Please Select and type the Object Name which you work with");
 string Name = Console.ReadLine();
 
 Type? take_a_type = assembly.GetType($"Assignment.{Name}");
@@ -22,6 +22,6 @@ Type? take_a_type = assembly.GetType($"Assignment.{Name}");
 string json=JsonFormatter.Convert_(take_a_type);
 
 Console.WriteLine();
-Console.WriteLine("-----------------------------Convert Object JSON-----------------------\n");
+Console.WriteLine("-----------------------------Convert Object to JSON-----------------------\n");
 
 Console.WriteLine(json);
