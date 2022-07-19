@@ -17,7 +17,12 @@ namespace Assignment
         
         public static string Convert(object item)
         {
+           
+            
+             
             Type type = item.GetType();
+           
+
             if (type == null)
             {
                 return null;
@@ -31,7 +36,7 @@ namespace Assignment
             {
                 if(ptypes[i].PropertyType.IsPrimitive)
                 {
-                    Json += $" \"{ptypes[i].Name}\" : ";
+                    Json += $"\"{ptypes[i].Name}\" :";
                     object? value=ptypes[i].GetValue(item);
                     Json += $" {value}";
                     if(i!=ptypes.Length-1)
@@ -45,7 +50,7 @@ namespace Assignment
                 {
                     Json += $" \"{ptypes[i].Name}\" : ";
                     object? value = ptypes[i].GetValue(item);
-                    Json += $" \"{value}\"";
+                    Json += $"\"{value}\"";
                     if (i != ptypes.Length - 1)
                     {
                         Json += ", \n";
@@ -55,7 +60,7 @@ namespace Assignment
                         Json += "\n";
                     }
                 }
-                else if(ptypes[i].PropertyType.IsArray)
+                else if(ptypes[i].PropertyType.IsArray) 
                 {
                     if (ptypes[i].PropertyType == typeof(int[]))
                     {
@@ -185,6 +190,24 @@ namespace Assignment
                         Json += "\n";
                     }
 
+                }
+                if(ptypes[i].PropertyType.IsGenericType)
+                {
+                    Json += $"\"{ptypes[i].Name}\" : [ \n";
+                    object obj = ptypes[i].GetValue(item);
+                    foreach(var items in obj as IList)
+                    {
+                        Convert(items);
+                        
+                    }
+                    if (i != ptypes.Length - 1)
+                    {
+                        Json += "], \n";
+                    }
+                    else
+                    {
+                        Json += "] \n";
+                    }
                 }
 
             }

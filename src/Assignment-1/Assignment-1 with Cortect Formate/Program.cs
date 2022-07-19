@@ -12,10 +12,11 @@ sessions.Add(new Session() { DurationInHour = 144, LearningObjective = "Very Imp
 sessions.Add(new Session() { DurationInHour = 344, LearningObjective = "Marked as Bold" });
 sessions.Add(new Session() { DurationInHour = 5, LearningObjective = "Marked as Red" });
 
-List<Session> sessions2 = new List<Session>();
-sessions.Add(new Session() { DurationInHour = 2, LearningObjective = "Have a nice Day" });
-sessions.Add(new Session() { DurationInHour = 32, LearningObjective = "Devskill Team" });
-sessions.Add(new Session() { DurationInHour = 5, LearningObjective = "Read Properly" });
+List<Session> sessions2 = new List<Session>()
+        { new Session() { DurationInHour = 2, LearningObjective = "Have a nice Day" },
+        new Session() { DurationInHour = 32, LearningObjective = "Devskill Team" } ,
+        new Session() { DurationInHour = 5, LearningObjective = "Read Properly" }
+       };
 
 List<Topic> topics = new List<Topic>();
 topics.Add(new Topic() { Description = "Awesome", Title = "Linq", Sessions = sessions });
