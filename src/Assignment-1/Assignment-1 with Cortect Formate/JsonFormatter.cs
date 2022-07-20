@@ -12,43 +12,42 @@ namespace Assignment
     public class JsonFormatter
     {
 
-
         public static string Json="";
-        
+
         public static string Convert(object item)
         {
-           
-            
-             
-            Type type = item.GetType();
-           
 
-            if (type == null)
+            if (item == null)
             {
                 return null;
             }
+            Type type = item.GetType();
 
             Json += "{ \n ";
 
-            PropertyInfo[] ptypes=type.GetProperties();
-             
-            for(int i=0;i<ptypes.Length;i++)
+            PropertyInfo[] ptypes = type.GetProperties();
+
+            for (int i = 0; i < ptypes.Length; i++)
             {
-                if(ptypes[i].PropertyType.IsPrimitive)
+                if (ptypes[i].PropertyType.IsPrimitive)
                 {
                     Json += $"\"{ptypes[i].Name}\" :";
-                    object? value=ptypes[i].GetValue(item);
+                    object? value = ptypes[i].GetValue(item);
                     Json += $" {value}";
-                    if(i!=ptypes.Length-1)
+                    if (i != ptypes.Length - 1)
                     {
                         Json += ", \n";
                     }
-                    
+                    else
+                    {
+                        Json += "\n";
+                    }
+
 
                 }
-                else if(ptypes[i].PropertyType==typeof(string))
+                else if (ptypes[i].PropertyType == typeof(string))
                 {
-                    Json += $" \"{ptypes[i].Name}\" : ";
+                    Json += $"\"{ptypes[i].Name}\" : ";
                     object? value = ptypes[i].GetValue(item);
                     Json += $"\"{value}\"";
                     if (i != ptypes.Length - 1)
@@ -60,7 +59,7 @@ namespace Assignment
                         Json += "\n";
                     }
                 }
-                else if(ptypes[i].PropertyType.IsArray) 
+                else if (ptypes[i].PropertyType.IsArray)
                 {
                     if (ptypes[i].PropertyType == typeof(int[]))
                     {
@@ -160,10 +159,10 @@ namespace Assignment
                         }
                     }
                 }
-                else if(ptypes[i].PropertyType == typeof(DateTime))
+                else if (ptypes[i].PropertyType == typeof(DateTime))
                 {
                     Json += $" \"{ptypes[i].Name} \" : ";
-                   object? value= ptypes[i].GetValue(item);
+                    object? value = ptypes[i].GetValue(item);
 
                     Json += $" \"{value}\"";
                     if (i != ptypes.Length - 1)
@@ -178,28 +177,33 @@ namespace Assignment
                 }
                 else if (ptypes[i].PropertyType.IsClass && !ptypes[i].PropertyType.IsGenericType)
                 {
-                    Json += $"\"{ptypes[i].Name}\" : ";
-                    Convert(ptypes[i].GetValue(item));
                     
-                    if (i != ptypes.Length - 1)
+                    Json += $"\"{ptypes[i].Name}\" : ";
+                    
+                    Convert(ptypes[i].GetValue(item));
+
+                    if(i!=ptypes.Length-1)
                     {
-                        Json += ", \n";
-                    }
-                    else
-                    {
-                        Json += "\n";
+                        Json += ",\n";
                     }
 
+
                 }
-                if(ptypes[i].PropertyType.IsGenericType)
+                else if (ptypes[i].PropertyType.IsGenericType)
                 {
                     Json += $"\"{ptypes[i].Name}\" : [ \n";
                     object obj = ptypes[i].GetValue(item);
-                    foreach(var items in obj as IList)
+                    foreach (var items in obj as IList)
                     {
+
                         Convert(items);
-                        
+
+                        Json += ",";
+
                     }
+                    string bson=Json.Remove(Json.Length-1);
+                    Json = bson;
+
                     if (i != ptypes.Length - 1)
                     {
                         Json += "], \n";
@@ -210,11 +214,16 @@ namespace Assignment
                     }
                 }
 
+
             }
-            Json += "}";
+              Json += "}";
+
 
             return Json;
 
         }
     }
 }
+
+
+

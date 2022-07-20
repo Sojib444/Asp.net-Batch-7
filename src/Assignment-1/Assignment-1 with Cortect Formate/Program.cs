@@ -64,38 +64,5 @@ Console.WriteLine(Json);
 
 
 
-//Session addSession = new Session()
-//{
-//    DurationInHour = 10,
-//    LearningObjective = "Very nice"
-//};
 
 
-//Instructor addInstructor = new Instructor()
-//{
-//    Email = "Jalal@gmail.com",
-//    Name = "Jalal Udiin",
-//    PermanentAddress = address,
-//    PresentAddress = address1,
-//    PhoneNumbers = phones
-//};
-
-//Phone addPone = new Phone()
-//{
-//    CountryCode = "89",
-//    Extension = "017",
-//    Number = "778553706"
-//};
-
-//AdmissionTest admission = new AdmissionTest()
-//{
-//    EndDateTime = new DateTime(22, 2, 1),
-//    StartDateTime = new DateTime(23, 4, 5),
-//    TestFees = 500
-//};
-
-//Topic addTopic = new Topic()
-//{
-//    Description = "Partial Class",
-//    Sessions = sessions
-//};
