@@ -31,129 +31,227 @@ namespace Assignment
             {
                 if (ptypes[i].PropertyType.IsPrimitive)
                 {
-                    Json += $"\"{ptypes[i].Name}\" :";
-                    object? value = ptypes[i].GetValue(item);
-                    Json += $" {value}";
-                    if (i != ptypes.Length - 1)
+                    if (ptypes[i].PropertyType == typeof(int))
                     {
-                        Json += ", \n";
+                        object checck_value = ptypes[i].GetValue(item);
+                        int d = (int)checck_value;
+
+                        if (d != 0)
+                        {
+                            Json += $"\"{ptypes[i].Name}\" :";
+                            object? value = ptypes[i].GetValue(item);
+
+                            Json += $" {value}";
+                            if (i != ptypes.Length - 1)
+                            {
+                                Json += ", \n";
+                            }
+                            else
+                            {
+                                Json += "\n";
+                            }
+                        }
                     }
-                    else
+                    else if (ptypes[i].PropertyType == typeof(double))
                     {
-                        Json += "\n";
+                        object checck_value = ptypes[i].GetValue(item);
+                        double d = (double)checck_value;
+
+                        if (d != 0)
+                        {
+                            Json += $"\"{ptypes[i].Name}\" :";
+                            object? value = ptypes[i].GetValue(item);
+
+                            Json += $" {value}";
+                            if (i != ptypes.Length - 1)
+                            {
+                                Json += ", \n";
+                            }
+                            else
+                            {
+                                Json += "\n";
+                            }
+                        }
+                    }
+                    else if (ptypes[i].PropertyType == typeof(float))
+                    {
+                        object checck_value = ptypes[i].GetValue(item);
+                        float d = (float)checck_value;
+
+                        if (d != 0)
+                        {
+                            Json += $"\"{ptypes[i].Name}\" :";
+                            object? value = ptypes[i].GetValue(item);
+
+                            Json += $" {value}";
+                            if (i != ptypes.Length - 1)
+                            {
+                                Json += ", \n";
+                            }
+                            else
+                            {
+                                Json += "\n";
+                            }
+                        }
                     }
 
 
                 }
                 else if (ptypes[i].PropertyType == typeof(string))
                 {
-                    Json += $"\"{ptypes[i].Name}\" : ";
-                    object? value = ptypes[i].GetValue(item);
-                    Json += $"\"{value}\"";
-                    if (i != ptypes.Length - 1)
+                    object checck_value = ptypes[i].GetValue(item);
+
+                    if (checck_value != null)
                     {
-                        Json += ", \n";
+                        Json += $"\"{ptypes[i].Name}\" : ";
+                        object? value = ptypes[i].GetValue(item);
+
+                        Json += $"\"{value}\"";
+                        if (i != ptypes.Length - 1)
+                        {
+                            Json += ", \n";
+                        }
+                        else
+                        {
+                            Json += "\n";
+                        }
+
                     }
-                    else
-                    {
-                        Json += "\n";
-                    }
+                    
                 }
                 else if (ptypes[i].PropertyType.IsArray)
                 {
                     if (ptypes[i].PropertyType == typeof(int[]))
                     {
                         int[] arr = (int[])ptypes[i].GetValue(item);
-
-                        Json += $"\"{ptypes[i].Name}\" : [ ";
-                        for (int j = 0; j < arr.Length; j++)
+                        if (arr != null)
                         {
-                            Json += $" {arr[j]}";
-                            if (j != arr.Length - 1)
+                            Json += $"\"{ptypes[i].Name}\" : [ ";
+                            for (int j = 0; j < arr.Length; j++)
                             {
-                                Json += ", ";
-                            }
-                            else
-                            {
-                                if (i != ptypes.Length - 1)
+                                Json += $" {arr[j]}";
+                                if (j != arr.Length - 1)
                                 {
-                                    Json += "], \n";
+                                    Json += ", ";
                                 }
                                 else
                                 {
-                                    Json += "] \n";
+                                    if (i != ptypes.Length - 1)
+                                    {
+                                        Json += "], \n";
+                                    }
+                                    else
+                                    {
+                                        Json += "] \n";
+                                    }
                                 }
                             }
                         }
                     }
-                    if (ptypes[i].PropertyType == typeof(string[]))
+                    else if (ptypes[i].PropertyType == typeof(double[]))
+                    {
+                        double[] arr = (double[])ptypes[i].GetValue(item);
+                        if (arr != null)
+                        {
+                            Json += $"\"{ptypes[i].Name}\" : [ ";
+                            for (int j = 0; j < arr.Length; j++)
+                            {
+                                Json += $" {arr[j]}";
+                                if (j != arr.Length - 1)
+                                {
+                                    Json += ", ";
+                                }
+                                else
+                                {
+                                    if (i != ptypes.Length - 1)
+                                    {
+                                        Json += "], \n";
+                                    }
+                                    else
+                                    {
+                                        Json += "] \n";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (ptypes[i].PropertyType == typeof(string[]))
                     {
                         string[] arr = (string[])ptypes[i].GetValue(item);
-                        Json += $"\"{ptypes[i].Name}\" : [ ";
-                        for (int j = 0; j < arr.Length; j++)
+                        if (arr != null)
                         {
-                            Json += $" \"{arr[j]}\"";
-                            if (j != arr.Length - 1)
+                            Json += $"\"{ptypes[i].Name}\" : [ ";
+                            for (int j = 0; j < arr.Length; j++)
                             {
-                                Json += ", ";
-                            }
-                            else
-                            {
-                                if (i != ptypes.Length - 1)
+                                Json += $" \"{arr[j]}\"";
+                                if (j != arr.Length - 1)
                                 {
-                                    Json += "], \n";
+                                    Json += ", ";
                                 }
                                 else
                                 {
-                                    Json += "] \n";
+                                    if (i != ptypes.Length - 1)
+                                    {
+                                        Json += "], \n";
+                                    }
+                                    else
+                                    {
+                                        Json += "] \n";
+                                    }
                                 }
                             }
                         }
                     }
-                    if (ptypes[i].PropertyType == typeof(char[]))
+                    else if (ptypes[i].PropertyType == typeof(char[]))
                     {
                         char[] arr = (char[])ptypes[i].GetValue(item);
-                        Json += $"\"{ptypes[i].Name}\" : [ ";
-                        for (int j = 0; j < arr.Length; j++)
+                        if (arr != null)
                         {
-                            Json += $" \'{arr[j]}\'";
-                            if (j != arr.Length - 1)
+                            Json += $"\"{ptypes[i].Name}\" : [ ";
+                            for (int j = 0; j < arr.Length; j++)
                             {
-                                Json += ", ";
-                            }
-                            else
-                            {
-                                if (i != ptypes.Length - 1)
+                                Json += $" \'{arr[j]}\'";
+                                if (j != arr.Length - 1)
                                 {
-                                    Json += "], \n";
+                                    Json += ", ";
                                 }
                                 else
                                 {
-                                    Json += "] \n";
+                                    if (i != ptypes.Length - 1)
+                                    {
+                                        Json += "], \n";
+                                    }
+                                    else
+                                    {
+                                        Json += "] \n";
+                                    }
                                 }
                             }
                         }
                     }
-                    if (ptypes[i].PropertyType == typeof(DateTime[]))
+                    else if (ptypes[i].PropertyType == typeof(DateTime[]))
                     {
                         DateTime[] arr = (DateTime[])ptypes[i].GetValue(item);
-                        Json += $"\"{ptypes[i].Name}\" : [ ";
-                        for (int j = 0; j < arr.Length; j++)
+                        if (arr != null)
                         {
-                            Json += $" \"{arr[j]}\"";
-                            if (j != arr.Length - 1)
+                            Json += $"\"{ptypes[i].Name}\" : [ ";
+                            for (int j = 0; j < arr.Length; j++)
                             {
-                                Json += ", ";
-                            }
-                            else
-                            {
-                                if (i != ptypes.Length - 1)
+                                Json += $" \"{arr[j]}\"";
+                                if (j != arr.Length - 1)
                                 {
-                                    Json += "], \n";
+                                    Json += ", ";
                                 }
                                 else
                                 {
-                                    Json += "] \n";
+                                    if (i != ptypes.Length - 1)
+                                    {
+                                        Json += "], \n";
+                                    }
+                                    else
+                                    {
+                                        Json += "] \n";
+                                    }
                                 }
                             }
                         }
@@ -161,62 +259,84 @@ namespace Assignment
                 }
                 else if (ptypes[i].PropertyType == typeof(DateTime))
                 {
-                    Json += $" \"{ptypes[i].Name} \" : ";
-                    object? value = ptypes[i].GetValue(item);
+                    object checck_value = ptypes[i].GetValue(item);
 
-                    Json += $" \"{value}\"";
-                    if (i != ptypes.Length - 1)
+                    if (checck_value != null)
                     {
-                        Json += ", \n";
-                    }
-                    else
-                    {
-                        Json += "\n";
+                        Json += $" \"{ptypes[i].Name} \" : ";
+                        object? value = ptypes[i].GetValue(item);
+
+                        Json += $" \"{value}\"";
+                        if (i != ptypes.Length - 1)
+                        {
+                            Json += ", \n";
+                        }
+                        else
+                        {
+                            Json += "\n";
+                        }
                     }
 
                 }
                 else if (ptypes[i].PropertyType.IsClass && !ptypes[i].PropertyType.IsGenericType)
                 {
-                    
-                    Json += $"\"{ptypes[i].Name}\" : ";
-                    
-                    Convert(ptypes[i].GetValue(item));
+                    object checck_value = ptypes[i].GetValue(item);
 
-                    if(i!=ptypes.Length-1)
+                    if (checck_value != null)
                     {
-                        Json += ",\n";
+                        Json += $"\"{ptypes[i].Name}\" : ";
+
+                        Convert(ptypes[i].GetValue(item));
+
+                        if (i != ptypes.Length - 1)
+                        {
+                            Json += ",\n";
+                        }
                     }
 
 
                 }
+
                 else if (ptypes[i].PropertyType.IsGenericType)
                 {
-                    Json += $"\"{ptypes[i].Name}\" : [ \n";
-                    object obj = ptypes[i].GetValue(item);
-                    foreach (var items in obj as IList)
+                    object checck_value = ptypes[i].GetValue(item);
+
+                    if (checck_value != null)
                     {
+                        Json += $"\"{ptypes[i].Name}\" : [ \n";
+                        object obj = ptypes[i].GetValue(item);
+                        foreach (var items in obj as IList)
+                        {
 
-                        Convert(items);
+                            Convert(items);
 
-                        Json += ",";
+                            Json += ",";
 
+                        }
+                        string bson = Json.Remove(Json.Length - 1);
+                        Json = bson;
+
+                        if (i != ptypes.Length - 1)
+                        {
+                            Json += "], \n";
+                        }
+                        else
+                        {
+                            Json += "] \n";
+                        }
+
+                       
                     }
-                    string bson=Json.Remove(Json.Length-1);
-                    Json = bson;
-
-                    if (i != ptypes.Length - 1)
-                    {
-                        Json += "], \n";
-                    }
-                    else
-                    {
-                        Json += "] \n";
-                    }
+                    
                 }
+
 
 
             }
-              Json += "}";
+            Json += "}";
+            
+
+
 
 
             return Json;
@@ -224,6 +344,7 @@ namespace Assignment
         }
     }
 }
+
 
 
 

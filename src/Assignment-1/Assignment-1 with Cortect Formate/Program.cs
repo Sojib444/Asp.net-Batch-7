@@ -1,61 +1,74 @@
 ﻿using Assignment;
 using System.Reflection;
 
-List<Phone> phones = new List<Phone>();
-phones.Add(new Phone() { CountryCode = "323", Extension = "323", Number = "2323" });
-phones.Add(new Phone() { CountryCode = "23", Extension = "43", Number = "534" });
-phones.Add(new Phone() { CountryCode = "7676", Extension = "2323", Number = "7868" });
+var adderss = new Address()
+{
+    Street = "Kazi Road",
+    City = "Bagura",
+    Country = "Bangladesh"
+};
 
+var sessions = new List<Session>()
+{
+    new Session()  { DurationInHour = 9, LearningObjective = "item 1"},
+    new Session()  {DurationInHour = 5, LearningObjective = "item 2"}
+};
 
-List<Session> sessions = new List<Session>();
-sessions.Add(new Session() { DurationInHour = 144, LearningObjective = "Very Important" });
-sessions.Add(new Session() { DurationInHour = 344, LearningObjective = "Marked as Bold" });
-sessions.Add(new Session() { DurationInHour = 5, LearningObjective = "Marked as Red" });
+var topic = new Topic()
+{
+    Title = "Java",
+    Description = "Basic java topic",
+    Sessions = sessions
+};
 
-List<Session> sessions2 = new List<Session>()
-        { new Session() { DurationInHour = 2, LearningObjective = "Have a nice Day" },
-        new Session() { DurationInHour = 32, LearningObjective = "Devskill Team" } ,
-        new Session() { DurationInHour = 5, LearningObjective = "Read Properly" }
-       };
-
-List<Topic> topics = new List<Topic>();
-topics.Add(new Topic() { Description = "Awesome", Title = "Linq", Sessions = sessions });
-topics.Add(new Topic() { Description = "Fine", Title = "Reflection", Sessions = sessions2 });
-
-List<AdmissionTest> admissionTests = new List<AdmissionTest>() {
-         new AdmissionTest()
-         { EndDateTime=new DateTime(2022,3,1),StartDateTime=new DateTime(2022-2-1),TestFees=100},
-         new AdmissionTest()
-         { EndDateTime=new DateTime(2023-2-1),StartDateTime=new DateTime(2023,4,5),TestFees=200}
-
-      };
-
-Address address = new Address();
-address.Street = "3232";
-address.City = "Dhaka";
-address.Country = "Bangladesh";
-
-Address address1 = new Address() { City = "Idia", Country = "Mohadesh", Street = "w4343" };
-
-Instructor instructor = new Instructor();
-instructor.Name = "Md Jalal Udiin";
-instructor.Email = "Jalal@gmail.com";
-instructor.PresentAddress = address;
-instructor.PhoneNumbers = phones;
-instructor.PermanentAddress = address1;
-
-
-Course course = new Course();
-course.Title = "Asp.net batch-7";
-course.Fees = 3000;
-course.Array =new int[] {1,2,3,5,6};
-course.Teacher = instructor;
-course.Topics = topics;
-course.Tests = admissionTests;
+var instructor = new Instructor
+{
+    Name = "Tareq",
+    Email = "tareq@gmail.com",
+    PresentAddress = adderss,
+    PermanentAddress = adderss,
+    PhoneNumbers = new List<Phone> { new Phone { CountryCode ="gsgsg", Extension="ghd", Number= "jh" },
+                                     new Phone { CountryCode ="fsg", Extension="rge", Number= "gh" }
+                                    }
+};
 
 
 
-string Json=JsonFormatter.Convert(course);
+var admissionTest = new AdmissionTest()
+{
+    StartDateTime = DateTime.Now,
+    EndDateTime = DateTime.Now,
+    TestFees = 323.342
+};
+
+var course = new Course
+{
+    Topics = new List<Topic> { topic, topic },
+    Tests = null
+};
+
+string Json = JsonFormatter.Convert(course);
+
+for (int i = Json.Length - 1; i >= 0; i--)
+{
+    if ((Json[i] >= '0' && Json[i] <= '9') || (Json[i] >= 'a' && Json[i] <= 'z') || (Json[i] >= 'A' && Json[i] <= 'Z') || Json[i]==']' ||Json[i]=='}' ||Json[i]=='"')
+    {
+        if (i + 1 < Json.Length)
+        {
+            if (Json[i + 1] == ',')
+            {
+                string bson = Json.Remove(i + 1, 1);
+                Json = bson;
+                break;
+                
+            }
+
+            break;
+
+        }
+
+    }
+}
 Console.WriteLine(Json);
 
 
