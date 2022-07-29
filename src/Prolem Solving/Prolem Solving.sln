@@ -109,7 +109,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marging Two Sorten Array", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "union,intersecton,difference", "union,intersecton,difference\union,intersecton,difference.csproj", "{3E6E2E6E-EFBB-4621-8277-F9B2CB57DB43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bainary Search", "Bainary Search\Bainary Search.csproj", "{974A16C2-5AE4-4043-90F6-E71699861041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bainary Search", "Bainary Search\Bainary Search.csproj", "{974A16C2-5AE4-4043-90F6-E71699861041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "66. Plus One--LeetCode", "66. Plus One--LeetCode\66. Plus One--LeetCode.csproj", "{E84F7AC2-432E-4930-8613-968DAB321AA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -333,6 +335,10 @@ Global
 		{974A16C2-5AE4-4043-90F6-E71699861041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974A16C2-5AE4-4043-90F6-E71699861041}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974A16C2-5AE4-4043-90F6-E71699861041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
