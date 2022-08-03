@@ -111,7 +111,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "union,intersecton,differenc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bainary Search", "Bainary Search\Bainary Search.csproj", "{974A16C2-5AE4-4043-90F6-E71699861041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "66. Plus One--LeetCode", "66. Plus One--LeetCode\66. Plus One--LeetCode.csproj", "{E84F7AC2-432E-4930-8613-968DAB321AA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "66. Plus One--LeetCode", "66. Plus One--LeetCode\66. Plus One--LeetCode.csproj", "{E84F7AC2-432E-4930-8613-968DAB321AA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "67. Add Binary Leetcode", "67. Add Binary Leetcode\67. Add Binary Leetcode.csproj", "{C2086B0D-0FA3-4F84-A45B-6DF775F9F031}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "268. Missing Number--Leetcode", "268. Missing Number--Leetcode\268. Missing Number--Leetcode.csproj", "{B96BCC27-9FBC-4752-A085-776F8AB3340B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "448. Find All Numbers Disappeared in an Array", "448. Find All Numbers Disappeared in an Array\448. Find All Numbers Disappeared in an Array.csproj", "{9C18E2F6-428B-4E65-8445-328F99C2D572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missing Element", "Missing Element\Missing Element.csproj", "{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -339,6 +347,22 @@ Global
 		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E84F7AC2-432E-4930-8613-968DAB321AA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2086B0D-0FA3-4F84-A45B-6DF775F9F031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2086B0D-0FA3-4F84-A45B-6DF775F9F031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2086B0D-0FA3-4F84-A45B-6DF775F9F031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2086B0D-0FA3-4F84-A45B-6DF775F9F031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96BCC27-9FBC-4752-A085-776F8AB3340B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96BCC27-9FBC-4752-A085-776F8AB3340B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96BCC27-9FBC-4752-A085-776F8AB3340B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96BCC27-9FBC-4752-A085-776F8AB3340B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C18E2F6-428B-4E65-8445-328F99C2D572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C18E2F6-428B-4E65-8445-328F99C2D572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C18E2F6-428B-4E65-8445-328F99C2D572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C18E2F6-428B-4E65-8445-328F99C2D572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
