@@ -119,7 +119,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "268. Missing Number--Leetco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "448. Find All Numbers Disappeared in an Array", "448. Find All Numbers Disappeared in an Array\448. Find All Numbers Disappeared in an Array.csproj", "{9C18E2F6-428B-4E65-8445-328F99C2D572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missing Element", "Missing Element\Missing Element.csproj", "{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missing Element", "Missing Element\Missing Element.csproj", "{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "102218-K", "102218-K\102218-K.csproj", "{3A6710FC-5DC9-4C8C-91D6-65EA5100EF07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "442. Find All Duplicates in an Array", "442. Find All Duplicates in an Array\442. Find All Duplicates in an Array.csproj", "{4A53E769-B81E-4BF6-B47A-DAE1EBC60D85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -363,6 +367,14 @@ Global
 		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6EA663B-85F5-43AA-8B76-1914D04E4ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6710FC-5DC9-4C8C-91D6-65EA5100EF07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6710FC-5DC9-4C8C-91D6-65EA5100EF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6710FC-5DC9-4C8C-91D6-65EA5100EF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6710FC-5DC9-4C8C-91D6-65EA5100EF07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A53E769-B81E-4BF6-B47A-DAE1EBC60D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A53E769-B81E-4BF6-B47A-DAE1EBC60D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A53E769-B81E-4BF6-B47A-DAE1EBC60D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A53E769-B81E-4BF6-B47A-DAE1EBC60D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
