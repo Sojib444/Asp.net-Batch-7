@@ -4,7 +4,7 @@
 
 int n = Convert.ToInt32(Console.ReadLine());
 string p=Convert.ToString(n);
-Console.WriteLine(p);
+
 
 int st = 0;
 int ed = p.Length - 1;
