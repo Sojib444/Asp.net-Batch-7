@@ -3,8 +3,19 @@
 }
 
 <link rel="stylesheet" href="~/css/site.css"/>
-<a asp-area="Admin"  asp-action="BookCreate" asp-controller="Home" 
-                        class="btn">Create Book</a>
+<div>
+    <div>
+        <a asp-area="Admin"  asp-action="BookCreate" asp-controller="Home" 
+                                class="btn">Create Book</a>
 
-<a asp-area="Admin" asp-action="ReaderCreate" 
-            asp-controller="Reader" class="btn">CreateReader</a>
+        <a asp-area="Admin" asp-action="ReaderCreate" 
+                    asp-controller="Reader" class="btn">CreateReader</a>
+    </div>
+
+    <div>
+        <a asp-area="Admin" asp-action="Index" asp-controller="Home"
+                            class="btn">Admin ListView</a>
+        <a asp-area="Admin" asp-action="Index" asp-controller="Reader"
+           class="btn">Reader ListView</a>
+    </div>
+</div>

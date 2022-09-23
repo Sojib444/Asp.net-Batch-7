@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+@section Style
+    {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Books</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="Book" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Writer</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Writer</th>
+                                <th>Price</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div>
+        <h5 style="color:red">Sorry Sir!I can't complete the implentation of list view.Because I can't complete my study about pagination.In this week I sick 2 days and and learn jquery 2 days and fall into critical error.That's why I can't complete the study of pagination'</h5>
+    </div>
+
+
+
+    @section Scripts
+    {
+    <!-- DataTables -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#Book').DataTable();
+        });
+    </script>
+
+}
