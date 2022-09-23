@@ -2,4 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 
-<a asp-area="Admin"  asp-action="BookCreate" asp-controller="Home">Create Book</a>
+<link rel="stylesheet" href="~/css/site.css"/>
+<a asp-area="Admin"  asp-action="BookCreate" asp-controller="Home" 
+                        class="btn">Create Book</a>
+
+<a asp-area="Admin" asp-action="ReaderCreate" 
+            asp-controller="Reader" class="btn">CreateReader</a>
