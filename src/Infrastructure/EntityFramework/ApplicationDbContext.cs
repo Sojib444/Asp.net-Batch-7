@@ -23,7 +23,7 @@ namespace Infrastructure.EntityFramework
             if(!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(_connectionstring,
-                    b => b.MigrationsAssembly(_assembly));
+                    c => c.MigrationsAssembly(_assembly));
             }
             base.OnConfiguring(optionsBuilder);
 
