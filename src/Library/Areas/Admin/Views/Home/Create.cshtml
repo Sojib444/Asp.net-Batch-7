@@ -1,0 +1,56 @@
+﻿
+@model Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+<p class="text-danger">@ViewBag.Massage</p>
+<p class="text-success">@ViewBag.Massage1</p>
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Default form</h4>
+                <p class="card-description"> Basic form layout </p>
+                <form asp-antiforgery="true" asp-area="Admin" asp-controller="Home" asp-action="Create" method="post" class="forms-sample">
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" id="exampleInputUsername1" placeholder="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address"></label>
+                        <input asp-for="Address" class="form-control" id="exampleInputUsername1" placeholder="Address">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" id="exampleInputUsername1" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateTime"></label>
+                        <input asp-for="DateTime" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                        <span asp-validation-for="DateTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CGPA"></label>
+                        <input asp-for="CGPA" class="form-control" id="exampleInputUsername1" placeholder="CGPA">
+                        <span asp-validation-for="CGPA" class="text-danger"></span>
+                    </div>
+                    <div class="form-check form-check-flat form-check-primary">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"> Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

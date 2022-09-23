@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Style
+{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/T-admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">DataTable with default features</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="Student" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>DateTime</th>
+                <th>CGPA</th>
+            </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                                <td>Presto</td>
+                                <td>Nintendo DS browser</td>
+                                <td>Nintendo DS</td>
+                                <td>8.5</td>
+                                <td>C/A<sup>1</sup></td>
+                                <td>C/A<sup>1</sup></td>
+                            </tr>
+                            <tr>
+                                <td>KHTML</td>
+                                <td>Konqureror 3.1</td>
+                                <td>KDE 3.1</td>
+                                <td>3.1</td>
+                                <td>C</td>
+                                <td>C</td>
+                            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>DateTime</th>
+                <th>CGPA</th>
+            </tr>
+            </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+@section Scripts
+{
+    <!-- DataTables -->
+    <script src="~/T-admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/T-admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+    $(document).ready(function () {
+            $('#Student').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "/admin/course/GetAllStudedet",
+                },
+            });
+    });
+</script>
+}
+
+@*    @section Scripts
+    {
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#myTable").DataTable();
+    </script>
+
+
+}
+
+
+@*$(document).ready(function () {
+            $('#myTable').DataTable({
+                "ajax":{
+                    "url": "/Admin/Home/GetAllStudedet",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Id","Id"="Id" },
+                    { "data": "Name", "Name"="Name" },
+                    { "data": "Email","Email"="Email" },
+                    { "data": "Address","Address"="Address" },
+                    { "data": "DateTime", "DateTime"= "DateTime" },
+                    { "data": "CGPA", "CGPA"= "CGPA" }
+                ]
+           
+                });
+        });*@

@@ -26,11 +26,13 @@ try
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     var assembly = Assembly.GetExecutingAssembly().FullName;
 
-    builder.Services.AddDbContext<ApplicationDbContext>(a =>
-    {
-        a.UseSqlServer(connectionString, a => a.MigrationsAssembly(assembly));
-    });
+    builder.Services.AddDbContext<ApplicationDbContext>(option =>
+                     option.UseSqlServer(connectionString,
+                     e => e.MigrationsAssembly(assembly)));
 
+    builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
+    builder.Services.AddControllersWithViews();
 
     builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
     builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
