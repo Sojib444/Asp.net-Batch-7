@@ -30,6 +30,7 @@ namespace Infrastructure.EntityFramework
 
         }
 
-       public DbSet<Student>? students { get; set; }
+       public DbSet<Book>? books { get; set; }
+       public DbSet<Reader>? readers { get; set; }
     }
 }

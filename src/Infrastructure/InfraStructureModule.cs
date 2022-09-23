@@ -28,11 +28,18 @@ namespace Infrastructure
                 .WithParameter("assembly", _assembly)
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<StudentService>().As<IStudentService>()
+            builder.RegisterType<BookService>().As<IBookService>()
             .InstancePerLifetimeScope();
 
-            builder.RegisterType<StudentRepository>().As<IStudentRepository>()
+            builder.RegisterType<BookRepository>().As<IBookRepository>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<ReaderService>().As<IReaderService>()
+                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<ReaderRepository>().As<IReaderRepository>()
+                .InstancePerLifetimeScope();
+
 
             builder.RegisterType<ApplicationUnitofWork>().As<IApplicationUnitofWork>()
                .InstancePerLifetimeScope();

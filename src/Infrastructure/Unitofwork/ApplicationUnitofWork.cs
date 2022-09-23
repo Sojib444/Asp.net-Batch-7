@@ -12,11 +12,17 @@ namespace Infrastructure.Unitofwork
     public class ApplicationUnitofWork :UnitOfWork, IApplicationUnitofWork
     {
 
-        public IStudentRepository studentRepository { get; }
-        public ApplicationUnitofWork(IApplicationDbContex dbContext, 
-            IStudentRepository studentRepository) : base((DbContext)dbContext)
+
+
+        public IBookRepository bookRepository { get; }
+
+        public IReaderRepository readerRepository { get; }
+
+        public ApplicationUnitofWork(IApplicationDbContex dbContext,
+           IBookRepository brepo, IReaderRepository rrepo) : base((DbContext)dbContext)
         {
-            this.studentRepository = studentRepository;
+            bookRepository = brepo;
+            readerRepository = rrepo;
         }
 
 

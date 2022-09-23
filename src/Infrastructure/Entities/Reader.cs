@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Entities
 {
-    public class Student
+    public class Reader
     {
+        [Key]
         public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public string? Address { get; set; }
-        public string? Email { get; set; }
-        public DateTime DateTime { get; set; }
-        public double CGPA { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
     }
 }

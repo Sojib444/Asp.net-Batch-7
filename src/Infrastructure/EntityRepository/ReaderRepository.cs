@@ -10,12 +10,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityRepository
 {
-    public class StudentRepository : GenericRepository<Student>, IStudentRepository
+    public class ReaderRepository:GenericRepository<Reader>,IReaderRepository
     {
-        public StudentRepository(IApplicationDbContex context) : base((DbContext)context)
+        public ReaderRepository(IApplicationDbContex context) : base((DbContext)context)
         {
 
         }
-        
     }
 }

@@ -9,7 +9,8 @@ namespace Infrastructure.Unitofwork
 {
     public interface IApplicationUnitofWork:IUnitofWork
     {
-        IStudentRepository studentRepository { get;  }
+        IBookRepository bookRepository { get;  }
+        IReaderRepository readerRepository { get;  }
 
     }
 }

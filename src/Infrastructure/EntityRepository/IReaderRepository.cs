@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityRepository
 {
-    public interface IStudentRepository:IGenericRepository<Student>
+    public interface IReaderRepository:IGenericRepository<Reader>
     {
-
     }
 }

@@ -10,6 +10,7 @@ namespace Infrastructure.EntityFramework
 {
     public interface IApplicationDbContex
     {
-        DbSet<Student>? students { get; set; }
+         DbSet<Book>? books { get; set; }
+         DbSet<Reader>? readers { get; set; }
     }
 }

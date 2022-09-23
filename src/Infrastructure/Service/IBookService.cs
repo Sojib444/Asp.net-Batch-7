@@ -1,5 +1,4 @@
 ﻿using Infrastructure.BusinessObject;
-using Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Service
 {
-    public interface IStudentService
+    public interface IBookService
     {
-        public void Take_Responsibility_For_CreateStudent(BStudent bStudent);
-        public IEnumerable<Student> getStudentLis();
-
-
-
+        public void CreateBook( BBook book);
     }
 }
