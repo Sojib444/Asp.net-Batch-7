@@ -7,7 +7,7 @@ namespace Library.Areas.Admin.Models
 {
     public class Book
     {
-        private IBookService _studentService;
+        private IBookService _bookservice;
         private ILifetimeScope _scope;
         public Book()
         {
@@ -15,13 +15,13 @@ namespace Library.Areas.Admin.Models
 
         public Book(IBookService studentService)
         {
-            _studentService = studentService;
+            _bookservice = studentService;
         }
 
         internal void ResolveDependency(ILifetimeScope scope)
         {
             _scope = scope;
-            _studentService = _scope.Resolve<IBookService>();
+            _bookservice = _scope.Resolve<IBookService>();
         }
 
         [Required]
@@ -38,7 +38,7 @@ namespace Library.Areas.Admin.Models
             book.Writer = Writer;
             book.Price = Price;
 
-            _studentService.CreateBook(book);
+            _bookservice.CreateBook(book);
         }
     }
 }

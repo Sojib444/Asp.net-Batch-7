@@ -38,6 +38,7 @@ try
     builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     {
         containerBuilder.RegisterModule(new InfraStructureModule(connectionString, assembly));
+        containerBuilder.RegisterModule(new LibraryModule());
     });
 
 
@@ -64,6 +65,10 @@ try
 
     app.UseAuthentication();
     app.UseAuthorization();
+
+    app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
     app.MapControllerRoute(
         name: "default",

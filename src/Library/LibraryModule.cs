@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Library.Areas.Admin.Models;
 
 namespace Library
 {
@@ -6,6 +7,8 @@ namespace Library
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<Book>().AsSelf();
+            builder.RegisterType<Reader>().AsSelf();
             base.Load(builder);
         }
     }
