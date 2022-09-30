@@ -1,118 +1,65 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
-<H1>Index</H1>
-@*@section Style
-{
+
+@section Style
+    {
     <!-- DataTables -->
-    <link rel="stylesheet" href="~/T-admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 }
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">DataTable with default features</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table id="Student" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>DateTime</th>
-                <th>CGPA</th>
-            </tr>
-            </thead>
-            <tbody>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Books</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="Book" class="table table-bordered table-striped">
+                        <thead>
                             <tr>
-                                <td>Presto</td>
-                                <td>Nintendo DS browser</td>
-                                <td>Nintendo DS</td>
-                                <td>8.5</td>
-                                <td>C/A<sup>1</sup></td>
-                                <td>C/A<sup>1</sup></td>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Writer</th>
+                                <th>Price</th>
                             </tr>
+                        </thead>
+                        <tfoot>
                             <tr>
-                                <td>KHTML</td>
-                                <td>Konqureror 3.1</td>
-                                <td>KDE 3.1</td>
-                                <td>3.1</td>
-                                <td>C</td>
-                                <td>C</td>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Writer</th>
+                                <th>Price</th>
                             </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>DateTime</th>
-                <th>CGPA</th>
-            </tr>
-            </tfoot>
-            </table>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
         </div>
-        <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+        <!-- /.col -->
     </div>
-    <!-- /.col -->
-</div>
 
-@section Scripts
-{
-    <!-- DataTables -->
-    <script src="~/T-admin/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="~/T-admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <div>
+        <h5 style="color:red">Sorry Sir!I can't complete the implentation of list view.Because I can't complete my study about pagination.In this week I was sick 2 days and and learned jquery 2 days and falled into critical error.That's why I can't complete the study of pagination'</h5>
+    </div>
 
-    <script>
-    $(document).ready(function () {
-            $('#Student').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "/admin/course/GetAllStudedet",
-                },
-            });
-    });
-</script>
-}*@
 
-@*    @section Scripts
+
+    @section Scripts
     {
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
     <script>
         $(document).ready(function () {
-
-            $("#myTable").DataTable();
+            $('#Book').DataTable();
+        });
     </script>
 
-
 }
-
-
-@*$(document).ready(function () {
-            $('#myTable').DataTable({
-                "ajax":{
-                    "url": "/Admin/Home/GetAllStudedet",
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "Id","Id"="Id" },
-                    { "data": "Name", "Name"="Name" },
-                    { "data": "Email","Email"="Email" },
-                    { "data": "Address","Address"="Address" },
-                    { "data": "DateTime", "DateTime"= "DateTime" },
-                    { "data": "CGPA", "CGPA"= "CGPA" }
-                ]
-           
-                });
-        });*@

@@ -9,6 +9,7 @@ namespace Library
         {
             builder.RegisterType<Book>().AsSelf();
             builder.RegisterType<Reader>().AsSelf();
+            builder.RegisterType<BookList>().AsSelf();
             base.Load(builder);
         }
     }

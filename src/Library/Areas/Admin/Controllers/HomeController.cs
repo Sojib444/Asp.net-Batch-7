@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Infrastructure.Service;
 using Library.Areas.Admin.Models;
+using Library.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Exam1_2.Areas.Admin.Controllers
 {
@@ -42,6 +44,16 @@ namespace Exam1_2.Areas.Admin.Controllers
             }
             
         }
+
+        public IActionResult GetData(HttpRequest request)
+        {
+            var ajaxmodel = new DataTableAjaxModel(request);
+            var model = _scope.Resolve<BookList>();
+            return Json(model.GetJson(ajaxmodel));
+
+        }
+
+ 
 
     }
 }
