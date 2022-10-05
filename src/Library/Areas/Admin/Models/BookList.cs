@@ -6,7 +6,7 @@ namespace Library.Areas.Admin.Models
     {
         public object? GetJson(DataTableAjaxModel ajaxmodel)
         {
-            
+            return null;
         }
     }
 }

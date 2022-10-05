@@ -1,14 +1,14 @@
 ﻿using Autofac;
 using Infrastructure.BusinessObject;
 using Infrastructure.Service;
+using Library.Models;
 using Microsoft.Build.Framework;
 
 namespace Library.Areas.Admin.Models
 {
-    public class Reader
+    public class Reader:BaseModel
     {
         private IReaderService _studentService;
-        private ILifetimeScope _scope;
         public Reader()
         {
         }
@@ -18,10 +18,10 @@ namespace Library.Areas.Admin.Models
             _studentService = studentService;
         }
 
-        internal void ResolveDependency(ILifetimeScope scope)
+        public override void ResolveDependency(ILifetimeScope scope)
         {
-            _scope = scope;
-            _studentService = _scope.Resolve<IReaderService>();
+            base.ResolveDependency(scope);
+           _studentService= _scope.Resolve<IReaderService>();
         }
 
         [Required]

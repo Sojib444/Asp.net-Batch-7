@@ -1,14 +1,14 @@
 ﻿using Autofac;
 using Infrastructure.BusinessObject;
 using Infrastructure.Service;
+using Library.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Library.Areas.Admin.Models
 {
-    public class Book
+    public class Book:BaseModel
     {
         private IBookService _bookservice;
-        private ILifetimeScope _scope;
         public Book()
         {
         }
@@ -17,12 +17,12 @@ namespace Library.Areas.Admin.Models
         {
             _bookservice = studentService;
         }
-
-        internal void ResolveDependency(ILifetimeScope scope)
+        public override void ResolveDependency(ILifetimeScope scope)
         {
-            _scope = scope;
-            _bookservice = _scope.Resolve<IBookService>();
+            base.ResolveDependency(scope);
+           _bookservice =_scope.Resolve<IBookService>();
         }
+
 
         [Required]
         public string Name { get; set; }
