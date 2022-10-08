@@ -16,5 +16,15 @@ namespace Infrastructure.EntityRepository
         {
 
         }
+
+        public (IList<Book> data, int total, int totalDisplay) GetCourses(int pageIndex,
+             int pageSize, string searchText, string orderby)
+        {
+            (IList<Book> data, int total, int totalDisplay) results =
+                GetAll(x => x.Writer.Contains(searchText), orderby,
+                "", pageIndex, pageSize, true);
+
+            return results;
+        }
     }
 }

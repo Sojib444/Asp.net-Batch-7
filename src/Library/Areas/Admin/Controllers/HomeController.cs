@@ -45,12 +45,12 @@ namespace Exam1_2.Areas.Admin.Controllers
             
         }
 
-        public IActionResult GetData(HttpRequest request)
+        public JsonResult GetData()
         {
-            var ajaxmodel = new DataTableAjaxModel(request);
-            var model = _scope.Resolve<BookList>();
-            return Json(model.GetJson(ajaxmodel));
 
+            DataTableAjaxModel tableAjaxModel = new DataTableAjaxModel(Request);
+            BookList bookList = _scope.Resolve<BookList>();
+            return Json(bookList.GetJson(tableAjaxModel));
         }
 
  

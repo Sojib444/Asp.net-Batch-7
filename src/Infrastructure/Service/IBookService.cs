@@ -10,5 +10,7 @@ namespace Infrastructure.Service
     public interface IBookService
     {
         public void CreateBook( BBook book);
+        public (int total, int totalDisplay, IList<BBook> book) GetBook(int pageIndex, int pageSize,
+                                                                 string search, string orderby);
     }
 }

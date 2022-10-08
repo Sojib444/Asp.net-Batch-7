@@ -28,5 +28,26 @@ namespace Infrastructure.Service
             _work.bookRepository.Add(book1);
             _work.Save();
         }
+
+        public (int total,int totalDisplay,IList<BBook> book) GetBook(int pageIndex,int pageSize,
+                                                                 string search,string orderby)
+        {
+            (IList<Book> data, int total, int totalDisplay) results = _work
+                .bookRepository.GetCourses(pageIndex, pageSize,search, orderby);
+
+            IList<BBook> bBooks = new List<BBook>();
+            foreach(var item in results.data)
+            {
+                bBooks.Add(new BBook
+                {
+                    
+                    Id = item.Id,
+                    Name = item.Name,
+                    Writer = item.Writer,
+                    Price = item.Price
+                });
+            }
+            return (results.total, results.totalDisplay, bBooks);
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace Infrastructure.EntityRepository
 {
     public interface IBookRepository:IGenericRepository<Book>
     {
+        (IList<Book> data, int total, int totalDisplay) GetCourses(int pageIndex,
+            int pageSize, string searchText, string orderby);
     }
 }

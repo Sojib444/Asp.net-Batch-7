@@ -73,9 +73,7 @@
     <!-- /.col -->
 </div>
 
-<div>
-    <h5 style="color:red">Sorry Sir!I can't complete the implentation of list view.Because I can't complete my study about pagination.In this week I was sick 2 days and and learn jquery 2 days and falled into critical error.That's why I can't complete the study of pagination'</h5>
-</div>
+
 
 
 
@@ -86,15 +84,18 @@
     <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
     <script>
-    $(document).ready(function () {
-            $('#Book').DataTable({
-                "processing":true,
-                "serverSide":true,
-                "ajax":{
-                    "url":"/Admin/Home/GetData"
-                }
-            });
-    });
+    $(document).ready(function()
+    {
+
+        $("#Book").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "/Admin/Home/GetData",
+        }
+        });
+        
+    })
 </script>
 
 }
