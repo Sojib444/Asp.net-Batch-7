@@ -33,10 +33,10 @@ namespace Library.Areas.Admin.Models
                 recordsFiltered = data.totalDisplay,
                 data = (from record in data.book select new string[]
                 {
-                    record.Id.ToString(),
                     record.Name,
                     record.Writer,
-                    record.Price.ToString()
+                    record.Price.ToString(),
+                    record.Id.ToString(),
                 }).ToArray()
             };
         }

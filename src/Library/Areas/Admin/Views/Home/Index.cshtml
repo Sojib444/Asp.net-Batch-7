@@ -22,18 +22,18 @@
                     <table id="Book" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Writer</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Writer</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
             </tfoot>
             </table>
@@ -52,14 +52,12 @@
                 <table id="Reader" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>Address</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>Address</th>
                         </tr>
@@ -72,6 +70,7 @@
     </div>
     <!-- /.col -->
 </div>
+<partial  name="_ModelPartial" />
 
 
 
@@ -92,8 +91,41 @@
                 "serverSide": true,
                 "ajax": {
                     "url": "/Admin/Home/GetData",
-        }
+                    
+                     },
+                "columnDefs": [
+                    {
+                        "orderable": false,
+                        "targets": 3,
+                        "render": function (data, type, row) {
+                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/Admin/Home/Edit/${data}'" value='${data}'>
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Edit
+                                            </button>
+                                            <button type="submit" class="btn btn-danger btn-sm show-bs-modal" data-id='${data}' value='${data}'>
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Delete
+                                            </button>`;
+                        }
+                    }
+                ]
         });
+            $('#Book').on('click', '.show-bs-modal', function (event) {
+                var id = $(this).data("id");
+                var modal = $("#modal-default");
+                console.log(modal);
+                modal.find('.modal-body p').text('Are you sure you want to delete this record?');
+                $("#deleteId").val(id);
+                $("#deleteForm").attr("action", "/Admin/Home/Delete");
+                modal.modal('show');
+                alert("Hi");
+            });
+
+            $("#deleteButton").click(function () {
+                $("#deleteForm").submit();
+            });
         
     })
 </script>
