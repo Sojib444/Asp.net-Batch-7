@@ -175,21 +175,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-5", "Pattern-5\Patt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pttern-6", "Pttern-6\Pttern-6.csproj", "{A8AB4247-0145-469F-BD8B-2CDB914B48F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-7", "Pattern-7\Pattern-7.csproj", "{A9A53A81-0860-4C81-BDA3-69C21BC8324B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-7", "Pattern-7\Pattern-7.csproj", "{A9A53A81-0860-4C81-BDA3-69C21BC8324B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-8", "Pattern-8\Pattern-8.csproj", "{F948C258-6F0A-45E5-BE81-E3E5B5076D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-8", "Pattern-8\Pattern-8.csproj", "{F948C258-6F0A-45E5-BE81-E3E5B5076D93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-9", "Pattern-9\Pattern-9.csproj", "{7DAABCDA-8253-411B-86E5-5D9C92EC7479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-9", "Pattern-9\Pattern-9.csproj", "{7DAABCDA-8253-411B-86E5-5D9C92EC7479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-10", "Pattern-10\Pattern-10.csproj", "{C41DDB59-9A70-4B9D-9C46-F7B60BD12F33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-10", "Pattern-10\Pattern-10.csproj", "{C41DDB59-9A70-4B9D-9C46-F7B60BD12F33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-11", "Pattern-11\Pattern-11.csproj", "{8FF237FA-9D4E-4E66-A8E9-EBBA59C3CA0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-11", "Pattern-11\Pattern-11.csproj", "{8FF237FA-9D4E-4E66-A8E9-EBBA59C3CA0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-12", "Pattern-12\Pattern-12.csproj", "{7502A1C0-549C-4AF3-B3BB-FD775E5E4359}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-12", "Pattern-12\Pattern-12.csproj", "{7502A1C0-549C-4AF3-B3BB-FD775E5E4359}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-13", "Pattern-13\Pattern-13.csproj", "{6741C1EC-D8F3-4B11-B1ED-6ED9DF4944D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-13", "Pattern-13\Pattern-13.csproj", "{6741C1EC-D8F3-4B11-B1ED-6ED9DF4944D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern-14", "Pattern-14\Pattern-14.csproj", "{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-14", "Pattern-14\Pattern-14.csproj", "{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1281. Subtract the Product and Sum of Digits of an Integer", "1281. Subtract the Product and Sum of Digits of an Integer\1281. Subtract the Product and Sum of Digits of an Integer.csproj", "{826E733C-F8DA-4768-8ACF-1A8C3592140A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "191. Number of 1 Bits", "191. Number of 1 Bits\191. Number of 1 Bits.csproj", "{AF8FABCC-2121-490B-B2ED-2ED992046041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "693. Binary Number with Alternating Bits", "693. Binary Number with Alternating Bits\693. Binary Number with Alternating Bits.csproj", "{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "461. Hamming Distance", "461. Hamming Distance\461. Hamming Distance.csproj", "{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -573,6 +581,22 @@ Global
 		{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{826E733C-F8DA-4768-8ACF-1A8C3592140A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{826E733C-F8DA-4768-8ACF-1A8C3592140A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{826E733C-F8DA-4768-8ACF-1A8C3592140A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{826E733C-F8DA-4768-8ACF-1A8C3592140A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8FABCC-2121-490B-B2ED-2ED992046041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8FABCC-2121-490B-B2ED-2ED992046041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8FABCC-2121-490B-B2ED-2ED992046041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8FABCC-2121-490B-B2ED-2ED992046041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
