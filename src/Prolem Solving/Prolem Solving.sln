@@ -191,13 +191,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-13", "Pattern-13\Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pattern-14", "Pattern-14\Pattern-14.csproj", "{21C65EE0-06C2-4B5D-88F8-2A5F05F0009B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1281. Subtract the Product and Sum of Digits of an Integer", "1281. Subtract the Product and Sum of Digits of an Integer\1281. Subtract the Product and Sum of Digits of an Integer.csproj", "{826E733C-F8DA-4768-8ACF-1A8C3592140A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1281. Subtract the Product and Sum of Digits of an Integer", "1281. Subtract the Product and Sum of Digits of an Integer\1281. Subtract the Product and Sum of Digits of an Integer.csproj", "{826E733C-F8DA-4768-8ACF-1A8C3592140A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "191. Number of 1 Bits", "191. Number of 1 Bits\191. Number of 1 Bits.csproj", "{AF8FABCC-2121-490B-B2ED-2ED992046041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "191. Number of 1 Bits", "191. Number of 1 Bits\191. Number of 1 Bits.csproj", "{AF8FABCC-2121-490B-B2ED-2ED992046041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "693. Binary Number with Alternating Bits", "693. Binary Number with Alternating Bits\693. Binary Number with Alternating Bits.csproj", "{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "693. Binary Number with Alternating Bits", "693. Binary Number with Alternating Bits\693. Binary Number with Alternating Bits.csproj", "{AB45CA90-1BB6-44B5-942D-D1922AE3EC78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "461. Hamming Distance", "461. Hamming Distance\461. Hamming Distance.csproj", "{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "461. Hamming Distance", "461. Hamming Distance\461. Hamming Distance.csproj", "{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2220. Minimum Bit Flips to Convert Number", "2220. Minimum Bit Flips to Convert Number\2220. Minimum Bit Flips to Convert Number.csproj", "{5EBB4E1C-F6F2-46F4-B787-4B955AE9A9E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2206. Divide Array Into Equal Pairs", "2206. Divide Array Into Equal Pairs\2206. Divide Array Into Equal Pairs.csproj", "{177BE4D4-492B-4EDC-AF9F-7A666A3B96CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -597,6 +601,14 @@ Global
 		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A03F22C-D955-4A04-98BE-9AEEEB3197B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EBB4E1C-F6F2-46F4-B787-4B955AE9A9E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBB4E1C-F6F2-46F4-B787-4B955AE9A9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBB4E1C-F6F2-46F4-B787-4B955AE9A9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBB4E1C-F6F2-46F4-B787-4B955AE9A9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{177BE4D4-492B-4EDC-AF9F-7A666A3B96CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{177BE4D4-492B-4EDC-AF9F-7A666A3B96CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{177BE4D4-492B-4EDC-AF9F-7A666A3B96CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{177BE4D4-492B-4EDC-AF9F-7A666A3B96CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
