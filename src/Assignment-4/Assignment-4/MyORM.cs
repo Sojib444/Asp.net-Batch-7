@@ -17,63 +17,61 @@ namespace Assignment_4
         {
 
             Type type = item.GetType();
-
-           PropertyInfo[] property=type.GetProperties();
-
             string p = "";
-            for (int i = 0; i <property.Length;i++)
+
+            void insetItem(object item)
             {
-                //check guid incomple;
-                if (property[i].PropertyType==typeof(int) || property[i].PropertyType == typeof(double)|| property[i].PropertyType == typeof(Guid))
+                PropertyInfo[] property = type.GetProperties();
+                for (int i = 0; i < property.Length; i++)
                 {
-                    object? result =property[i].GetValue(item);
-                    if(i!=property.Length-1)
+                    //check guid incomple;
+                    if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
                     {
-                        p += $"{result},";
+                        object? result = property[i].GetValue(item);
+                        if (i != property.Length - 1)
+                        {
+                            p += $"{result},";
+                        }
+                        else
+                        {
+                            p += $"{result}";
+                        }
+
+
                     }
-                    else
+                    else if (property[i].PropertyType == typeof(string))
                     {
-                        p += $"{result}";
+                        object? result = property[i].GetValue(item);
+                        if (i != property.Length - 1)
+                        {
+                            p += $"'{result}',";
+                        }
+                        else
+                        {
+                            p += $"'{result}'";
+                        }
+
+
                     }
 
+                    else if (property[i].PropertyType.IsClass && !property[i].PropertyType.IsGenericType)
+                    {
+                        insetItem(property[i].GetValue(item));
+                    }
+                    else if (property[i].PropertyType.IsGenericType)
+                    {
+                        object obj = property[i].GetValue(item);
+                        foreach (var prop in obj as IList)
+                        {
+                            insetItem(prop);
+                        }
+                    }
 
                 }
-                else if (property[i].PropertyType == typeof(string) )
-                {
-                    object? result = property[i].GetValue(item);
-                    if (i != property.Length - 1)
-                    {
-                        p += $"'{result}',";
-                    }
-                    else
-                    {
-                        p += $"'{result}'";
-                    }
-
-
-                }
-
-                else if (property[i].PropertyType.IsClass && !property[i].PropertyType.IsGenericType)
-                {
-                    Insert(property[i].GetValue());
-                }
-                else if (property[i].PropertyType.IsGenericType)
-                {
-                    object obj=property[i].GetValue(item);
-                    foreach(var prop in obj as IList)
-                    {
-
-                        var result = prop;
-                        object ob=Convert.ChangeType(result, typeof(T));
-                        Insert((T)ob);
-                    }
-                }
-
             }
-
-            if(p[p.Length-1]==',')
+            if (p[p.Length - 1] == ',')
             {
-                string q=p.Remove(p.Length - 1, 1);
+                string q = p.Remove(p.Length - 1, 1);
                 p = q;
             }
             string s = $"insert into {type.Name} values ({p}) ";
