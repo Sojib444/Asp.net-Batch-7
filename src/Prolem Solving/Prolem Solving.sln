@@ -211,7 +211,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1009. Complement of Base 10
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "231. Power of Two", "231. Power of Two\231. Power of Two.csproj", "{3256AA39-F22E-49FC-BD25-21DA16DACFA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "136. Single Number", "136. Single Number\136. Single Number.csproj", "{B9AA794C-027E-4223-AA32-4F1563A63CE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "136. Single Number", "136. Single Number\136. Single Number.csproj", "{B9AA794C-027E-4223-AA32-4F1563A63CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "338. Counting Bits", "338. Counting Bits\338. Counting Bits.csproj", "{88A68326-6533-4BEC-9EAA-0321BFC1E213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -639,6 +641,10 @@ Global
 		{B9AA794C-027E-4223-AA32-4F1563A63CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9AA794C-027E-4223-AA32-4F1563A63CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9AA794C-027E-4223-AA32-4F1563A63CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A68326-6533-4BEC-9EAA-0321BFC1E213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A68326-6533-4BEC-9EAA-0321BFC1E213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A68326-6533-4BEC-9EAA-0321BFC1E213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A68326-6533-4BEC-9EAA-0321BFC1E213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
