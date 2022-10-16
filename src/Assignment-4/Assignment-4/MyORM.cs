@@ -30,7 +30,7 @@ namespace Assignment_4
 
             for (int i=0;i<property.Length;i++)
             {
-                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid) || property[i].PropertyType == typeof(DateTime))
+                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid) || property[i].PropertyType == typeof(date))
                 {
                     object? result = property[i].GetValue(item);
                     string n = property[i].Name;
