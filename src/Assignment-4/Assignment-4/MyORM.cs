@@ -8,6 +8,7 @@ using System.Data;
 using System.Reflection;
 using System.Collections.Specialized;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace Assignment_4
 {
@@ -15,81 +16,122 @@ namespace Assignment_4
     {
         public void Insert(T item)
         {
+            Type Mtype = item.GetType();
 
-            Type type = item.GetType();
-            string p = "";
+            string Name = Mtype.Name;
 
-            void insetItem(object item)
+            ////HANDLE object type
+            void InsertItem(object item1,string value)
             {
-                PropertyInfo[] property = type.GetProperties();
+                Type type1 = item1.GetType();
+                string newName = value;
+                PropertyInfo[] property = type1.GetProperties();
+
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                string r = "";
+
                 for (int i = 0; i < property.Length; i++)
                 {
                     //check guid incomple;
                     if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
                     {
-                        object? result = property[i].GetValue(item);
+                        object? result = property[i].GetValue(item1);
+                        string n = property[i].Name;
+                        parameters.Add($"{n}", result);
+
                         if (i != property.Length - 1)
                         {
-                            p += $"{result},";
+                            r += $"@{n},";
                         }
                         else
                         {
-                            p += $"{result}";
-                        }
+                            r += $"@{n}";
 
+                        }
 
                     }
                     else if (property[i].PropertyType == typeof(string))
                     {
-                        object? result = property[i].GetValue(item);
+                        object? result = property[i].GetValue(item1);
+                        string n = property[i].Name;
+
+                        parameters.Add($"{n}", result);
+
                         if (i != property.Length - 1)
                         {
-                            p += $"'{result}',";
+                            r += $"@{n},";
                         }
                         else
                         {
-                            p += $"'{result}'";
-                        }
+                            r += $"@{n}";
 
-
-                    }
-
-                    else if (property[i].PropertyType.IsClass && !property[i].PropertyType.IsGenericType)
-                    {
-                        insetItem(property[i].GetValue(item));
-                    }
-                    else if (property[i].PropertyType.IsGenericType)
-                    {
-                        object obj = property[i].GetValue(item);
-                        foreach (var prop in obj as IList)
-                        {
-                            insetItem(prop);
                         }
                     }
 
                 }
+
+                string p = $"insert into {newName} values ({r})";
+                Connection.InsertCommand(p, parameters);
             }
-            if (p[p.Length - 1] == ',')
+
+
+
+                ///handle Premitive data Type
+            PropertyInfo[] property =Mtype.GetProperties();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            string r = "";
+            Dictionary<object,string> list = new Dictionary<object, string>();
+            for (int i=0;i<property.Length;i++)
             {
-                string q = p.Remove(p.Length - 1, 1);
-                p = q;
-            }
-            string s = $"insert into {type.Name} values ({p}) ";
-            Console.WriteLine(s);
-            using var connection = Connection.Getconnection();
-            using SqlCommand sqlCommand = new SqlCommand(s, connection);
-            try
-            {
-                int result=sqlCommand.ExecuteNonQuery();
-                if(result==1)
+                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
                 {
-                    Console.WriteLine("Insert Succesfull");
+                    object? result = property[i].GetValue(item);
+                    string n = property[i].Name;
+                    parameters.Add($"{n}", result);
+
+                    if (i != property.Length - 1)
+                    {
+                        r += $"@{n},";
+                    }
+                    else
+                    {
+                        r += $"@{n}";
+
+                    }
+
                 }
+                else if (property[i].PropertyType == typeof(string))
+                {
+                    object? result = property[i].GetValue(item);
+                    string n = property[i].Name;
+
+                    parameters.Add($"{n}", result);
+
+                    if (i != property.Length - 1)
+                    {
+                        r += $"@{n},";
+                    }
+                    else
+                    {
+                        r += $"@{n}";
+
+                    }
+                }
+                else
+                {
+                    list.Add(property[i].GetValue(item), property[i].Name); 
+                }
+               
             }
-            catch(Exception ex)
+            string p = $"insert into {Name} values ({r})";
+            Connection.InsertCommand(p, parameters);
+            foreach(var items  in list)
             {
-                Console.WriteLine(ex.Message);
+
+                Console.WriteLine(items);
+                InsertItem(items.Key,items.Value);
             }
+
 
 
 
@@ -122,3 +164,14 @@ namespace Assignment_4
         }
     }
 }
+
+/*if (i != property.Length - 1)
+{
+    p += $"{result},";
+}
+else
+{
+    p += $"{result}";
+
+}
+*/
