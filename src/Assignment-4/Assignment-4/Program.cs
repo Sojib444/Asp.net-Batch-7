@@ -6,31 +6,38 @@ using Assignment_4.Model;
 using Assignment_4.Object;
 
 Course course = new Course();
-course.Id = 31;
+course.Id = 1;
 course.Title = "C++";
 course.Topics = new List<Topic>()
 {
-        new Topic{Id=11,Title="Delegates and Event", Description="Fine",CourseId=31},
-        new Topic{Id=12,Title="Delegates and Event", Description="Fine",CourseId=31},
-        new Topic{Id=13,Title="Delegates and Event", Description="Fine",CourseId=31}
+        new Topic{Id=1,Title="Delegates and Event", Description="Fine",CourseId=1},
+        new Topic{Id=2,Title="Delegates and Event", Description="Fine",CourseId=1},
+        new Topic{Id=3,Title="Delegates and Event", Description="Fine",CourseId=1}
 };
 course.Teacher = new Instructor()
 {
     Name = "jajal uddin",
     Email = "jajaj@gmail.com",
-    CourseId = 31,
-    Id = 21,
-    PermanentAddress = new Address { Id = 7, City = "Pabna", Country = "Bangladesh", Street = "4343", IntructorId = 21 },
-    PresentAddress = new Address { Id = 8, City = "Pabna", Country = "Bangladesh", Street = "4343", IntructorId = 21 },
-    PhoneNumbers=new List<Phone>() { new Phone() {Id=6, Number="4343",CountryCode="88",Extension="+",TeacherId=21},
-                                    new Phone() {Id=7, Number="4343",CountryCode="88",Extension="+",TeacherId=21}}
+    CourseId = 1,
+    Id = 1,
+    PermanentAddress = new Address { Id = 1, City = "Pabna", Country = "Bangladesh", Street = "4343", IntructorId = 1 },
+    PresentAddress = new Address { Id = 2, City = "Pabna", Country = "Bangladesh", Street = "4343", IntructorId = 1 },
+    PhoneNumbers=new List<Phone>() { new Phone() {Id=6, Number="4343",CountryCode="88",Extension="+",TeacherId=1},
+                                    new Phone() {Id=7, Number="4343",CountryCode="88",Extension="+",TeacherId=1}}
 };
-course.Topics = new List<Topic>() { new Topic() { Id=8,Title="It's very Fine",Description="googd",CourseId=31},
-                        new Topic() { Id=9,Title="It's very Fine",Description="googd",CourseId=31}};
-course.Tests = new List<AdmissionTest>() { new AdmissionTest(){ Id=7,StartDateTime=DateTime.Now,EndDateTime=DateTime.Now.AddDays(10),TestFees=100,CourseId=31},
-                new AdmissionTest(){ Id=8,StartDateTime=DateTime.Now,EndDateTime=DateTime.Now.AddDays(10),TestFees=100,CourseId=31}};
+course.Topics = new List<Topic>() { new Topic() { Id=1,Title="It's very Fine",Description="googd",CourseId=1,
+         Sessions=new List<Session>(){
+         new Session(){Id=1,LearningObjective="very good",DurationInHour=2,TopicId=1}
+         } },
+        new Topic() { Id=2,Title="It's very Fine",Description="googd",CourseId=1,
+        Sessions=new List<Session>(){
+         new Session(){Id=3,LearningObjective="very good",DurationInHour=2,TopicId=1}
+         }}
+        };
+//course.Tests = new List<AdmissionTest>() { new AdmissionTest(){ Id=1,StartDateTime=DateTime.Now,EndDateTime=DateTime.Now.AddDays(10),TestFees=100,CourseId=1},
+//                new AdmissionTest(){ Id=1,StartDateTime=DateTime.Now,EndDateTime=DateTime.Now.AddDays(10),TestFees=100,CourseId=1}};
 
-course.Fees = 1232.64;
+course.Fees = 10000;
 
 AdmissionTest admissionTest = new AdmissionTest();
 admissionTest.StartDateTime = DateTime.Now;
@@ -46,8 +53,11 @@ topic.Description = "ffsdgsdfd";
 topic.CourseId= 30;
 
 
-MyORM<int, AdmissionTest> type = new MyORM<int, AdmissionTest>();
-type.Insert(admissionTest);
+MyORM<int, Course> type = new MyORM<int, Course>();
+//type.Insert(course);
+
+type.GetAll();
+//type.GetById(2);
 
 //string str = "Sojib,";
 //Console.WriteLine(str.Length);

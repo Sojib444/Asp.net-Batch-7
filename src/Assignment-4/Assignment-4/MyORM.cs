@@ -25,12 +25,12 @@ namespace Assignment_4
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             string r = "";
 
-            Dictionary<object,string> list = new Dictionary<object, string>();
-            Dictionary<object,string> GenericList = new Dictionary<object, string>();
+            List<object> list = new List<object>();
+            List<object> GenericList = new List<object>();
 
             for (int i=0;i<property.Length;i++)
             {
-                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid) || property[i].PropertyType == typeof(date))
+                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid) || property[i].PropertyType == typeof(DateTime))
                 {
                     object? result = property[i].GetValue(item);
                     string n = property[i].Name;
@@ -51,12 +51,12 @@ namespace Assignment_4
                     object result = property[i].GetValue(item);
                     foreach(var items in result as IList)
                     {
-                        GenericList.Add(items, property[i].Name);
+                        GenericList.Add(items);
                     }
                 }
                 else
                 {
-                    list.Add(property[i].GetValue(item), property[i].Name); 
+                    list.Add(property[i].GetValue(item)); 
                 }
                
             }
@@ -64,11 +64,11 @@ namespace Assignment_4
             Connection.InsertCommand(p, parameters);
             foreach(var items  in list)
             {
-                NestestedClass.InsertItem(items.Key,items.Value);
+                NestestedClass.InsertItem(items);
             }
             foreach (var items in GenericList)
             {
-                NestestedClass.InsertItem(items.Key, items.Value);
+                NestestedClass.InsertItem(items);
             }
         }
         public void Delete(T item)
@@ -83,12 +83,82 @@ namespace Assignment_4
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            Type type = typeof(T);
+            string newName = type.Name;
+            Console.WriteLine(newName);
+            string query = $"select * from {newName}";
+            using SqlDataReader dataReader = Connection.ExecuteQuery(query);
+            while(dataReader.HasRows)
+            {
+                while(dataReader.Read())
+                {
+                    string values = "";
+                    for(int i=0;i<dataReader.FieldCount;i++)
+                    {
+                        values += $"{dataReader[i]},";
+                    }
+
+                    PropertyInfo[] property = type.GetProperties();
+                    string para = "";
+
+                    for (int i = 0; i < property.Length; i++)
+                    {
+                        if (property[i].PropertyType == typeof(DateTime) || property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
+                        {
+                            string Name = property[i].Name;
+                            para += $"{Name},";
+
+                        }
+                        else if (property[i].PropertyType == typeof(string))
+                        {
+                            string Name = property[i].Name;
+
+                            para += $"{Name},";
+                        }
+
+                    }
+                    int d = para.LastIndexOf(",");
+                    string q = para.Remove(d, 1);
+                    para = q;
+
+                    int c = values.LastIndexOf(",");
+                    string f = values.Remove(c, 1);
+                    values = f;
+
+
+                    string[] DName = para.Split(",");
+                    string[] Dvalues = values.Split(",");
+
+                    Dictionary<string, string> keyValue = new Dictionary<string, string>();
+
+                    for(int i=0;i<DName.Length;i++)
+                    {
+                        keyValue.Add(DName[i], Dvalues[i]);
+                    }
+
+                    foreach(var item in keyValue)
+                    {
+                        Console.WriteLine(item.Key+" : "+item.Value);
+                    }
+
+
+
+                }
+            }
+            //int d = r.LastIndexOf(",");
+            //string q=r.Remove(d, 1);
+            //r = q;
+            //string p = $"Select {r} from {newName}";
+            
         }
 
         public void GetById(G id)
         {
-            throw new NotImplementedException();
+           Type type=typeof(T);
+            string name=type.Name;
+            Console.WriteLine(name);
+
+               
         }
 
        

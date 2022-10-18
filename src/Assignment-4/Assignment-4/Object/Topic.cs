@@ -12,7 +12,7 @@ namespace Assignment_4.Model
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        List<Session> Sessions { get; set; }
+        public List<Session> Sessions { get; set; }
         public int CourseId { get; set; }
 
     }

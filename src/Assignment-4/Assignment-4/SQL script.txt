@@ -1,24 +1,32 @@
-﻿Create table Course (Id int primary key ,Title varchar(max)not null);
+﻿Create table Course (Id int primary key ,Title varchar(max)not null,Fees float(10));
 
-Create table Teacher (Id int primary key ,Name varchar(50),Email varchar(100) ,
-CourseId int foreign key references Course(Id));
-
-Create table PresentAddress (Id int primary key ,Street varchar(50),
-City varchar(100) ,Country varchar(100),TeacherId int foreign key references Teacher(Id));
-
-Create table PermanentAddress (Id int primary key ,Street varchar(50),
-City varchar(100) ,Country varchar(100),TeacherId int foreign key references Teacher(Id));
-
-Create table Topics (Id int primary key ,Title varchar(max),Description varchar(max),
+Create table Topic(Id int primary key ,Title varchar(max),Description varchar(max),
 CourseId int foreign key references Course(Id));
 
 Create table AdmissionTest (Id int primary key ,StartDateTime datetime,EndDateTime datetime,
 TestFees float(10),CourseId int foreign key references Course(Id));
 
+Create table Session (Id int primary key ,DurationInHour int,LearningObjective varchar(max),
+TopicId int foreign key references Topic(Id));
 
 
-Create table Sessions (Id int primary key ,DurationInHour int,LearningObjective varchar(max),
-TopicId int foreign key references Topics(Id));
 
-Create table PhoneNumbers (Id int primary key ,Number varchar(15),Extension varchar(5),CountryCode varchar(10), TeacherId int foreign key references Teacher(Id));
+Create table Instructor (Id int primary key ,Name varchar(50),Email varchar(100) ,
+CourseId int foreign key references Course(Id));
 
+
+Create table Address (Id int primary key ,Street varchar(50),City varchar(100) ,Country varchar(100),
+TeacherId int foreign key references Instructor(Id));
+
+Create table Phone (Id int primary key ,Number varchar(15),Extension varchar(5),CountryCode varchar(10),
+TeacherId int foreign key references Instructor(Id));
+
+
+
+
+select * from Course;
+select * from Instructor;
+select * from Address;
+select * from Phone
+select * from Topic;
+select * from Session;

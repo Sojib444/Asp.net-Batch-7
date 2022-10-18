@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.PortableExecutable;
 
 namespace Assignment_4
 {
@@ -13,7 +14,7 @@ namespace Assignment_4
 
         public static SqlConnection Getconnection()
         {
-           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Exam4;Trusted_Connection=True;"; ;
+           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Test;Trusted_Connection=True;"; ;
         SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
@@ -60,6 +61,41 @@ namespace Assignment_4
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public static SqlDataReader ExecuteQuery(string  p)
+        {
+
+            SqlDataReader? reader = null;
+            try
+            {
+                var connection = Getconnection();
+                SqlCommand sqlCommand = new SqlCommand(p, connection);
+                SqlDataReader? reader1 = sqlCommand.ExecuteReader();
+
+                //if (reader.HasRows)
+                //{
+
+                //    while(reader.Read())
+                //    {
+                //        for(int i=0;i<reader.FieldCount;i++)
+                //        {
+                //            Console.Write(reader[i]+" ");
+
+                //        }
+                //        Console.WriteLine();
+                //    }
+                //}
+                reader = reader1;
+
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return reader;
         }
 
     }

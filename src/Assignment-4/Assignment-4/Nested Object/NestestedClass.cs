@@ -11,17 +11,17 @@ namespace Assignment_4.Nested_Object
 {
     public class NestestedClass
     {
-        public static void InsertItem(object item, string value)
+        public static void InsertItem(object item)
         {
             Type type1 = item.GetType();
-            string newName = value;
+            string newName = type1.Name;
             PropertyInfo[] property = type1.GetProperties();
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             string r = "";
 
-            Dictionary<object, string> list = new Dictionary<object, string>();
-            Dictionary<object, string> GenericList = new Dictionary<object, string>();
+            List<object> list = new List<object>();
+            List<object> GenericList =new  List<object>();
 
             for (int i = 0; i < property.Length; i++)
             {
@@ -46,12 +46,13 @@ namespace Assignment_4.Nested_Object
                     object result = property[i].GetValue(item);
                     foreach (var items in result as IList)
                     {
-                        GenericList.Add(items, property[i].Name);
+                        GenericList.Add(items);
+                        
                     }
                 }
                 else
                 {
-                    list.Add(property[i].GetValue(item), property[i].Name);
+                    list.Add(property[i].GetValue(item));
                 }
 
             }
@@ -59,11 +60,11 @@ namespace Assignment_4.Nested_Object
             Connection.InsertCommand(p, parameters);
             foreach (var items in list)
             {
-                InsertItem(items.Key, items.Value);
+                InsertItem(items);
             }
             foreach (var items in GenericList)
             {
-                InsertItem(items.Key, items.Value);
+                InsertItem(items);
             }
         }
     }
