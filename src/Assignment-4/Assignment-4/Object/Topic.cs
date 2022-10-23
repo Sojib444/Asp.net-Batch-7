@@ -13,7 +13,6 @@ namespace Assignment_4.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public List<Session> Sessions { get; set; }
-        public int CourseId { get; set; }
 
     }
 }

@@ -12,7 +12,6 @@ namespace Assignment_4.Object
         public string Number { get; set; }
         public string Extension { get; set; }
         public string CountryCode { get; set; }
-        public int TeacherId { get; set; }
 
     }
 }

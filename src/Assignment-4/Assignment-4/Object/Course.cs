@@ -15,7 +15,7 @@ namespace Assignment_4.Entity
         public Instructor Teacher { get; set; }
         public List<Topic> Topics { get; set; }
         public double Fees { get; set; }
-       // public List<AdmissionTest> Tests { get; set; }
+        public List<AdmissionTest> Tests { get; set; }
 
     }
 

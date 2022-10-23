@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Assignment_4.Nested_Object
 {
-    public class GetAllClass
+    public class GetAll
     {
-        public static void GetAll(object item)
+        public static void GetAllvalues(object item)
         {
             Type type1 = item.GetType();
             string newName = type1.Name;

@@ -1,4 +1,9 @@
-﻿Create table Course (Id int primary key ,Title varchar(max)not null,Fees float(10));
+﻿use Master;
+create Database Test1;
+
+use Test1;
+
+Create table Course (Id int primary key ,Title varchar(max)not null,Fees float(10));
 
 Create table Topic(Id int primary key ,Title varchar(max),Description varchar(max),
 CourseId int foreign key references Course(Id));

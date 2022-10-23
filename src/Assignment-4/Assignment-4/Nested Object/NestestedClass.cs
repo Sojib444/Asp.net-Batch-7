@@ -11,11 +11,13 @@ namespace Assignment_4.Nested_Object
 {
     public class NestestedClass
     {
-        public static void InsertItem(object item)
+        public static void InsertItem(object item,object primarykey,Type? Gtype=null)
         {
             Type type1 = item.GetType();
             string newName = type1.Name;
             PropertyInfo[] property = type1.GetProperties();
+
+            object? primarykey1 = default;
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             string r = "";
@@ -25,13 +27,26 @@ namespace Assignment_4.Nested_Object
 
             for (int i = 0; i < property.Length; i++)
             {
-                if (property[i].PropertyType == typeof(DateTime)|| property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
+                if (property[i].Name == "Id")
+                {
+                    object? result = property[i].GetValue(item);
+                    primarykey1 = result;
+
+                }
+                if (property[i].PropertyType == typeof(DateTime)|| property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double))
                 {
                     object? result = property[i].GetValue(item);
                     string n = property[i].Name;
                     parameters.Add($"{n}", result);
                     r += $"@{n},";
 
+                }
+                else if (property[i].PropertyType == typeof(DateTime))
+                {
+                    object? result = property[i].GetValue(item);
+                    string n = property[i].Name;
+                    parameters.Add($"{n}", result);
+                    r += $"@'{n}',";
                 }
                 else if (property[i].PropertyType == typeof(string))
                 {
@@ -56,15 +71,33 @@ namespace Assignment_4.Nested_Object
                 }
 
             }
+
+            if (Gtype == typeof(int))
+            {
+                int test = int.Parse(string.Format("{0}", primarykey));
+                r += $"{test},";
+
+            }
+            else if (Gtype == typeof(double))
+            {
+                double test = double.Parse(string.Format("{0}", primarykey));
+                r += $"{test},";
+            }
+            else if(Gtype == typeof(Guid))
+            {
+                Guid test = Guid.Parse(string.Format("{0}", primarykey));
+                r += $"{test},";
+            }       
+
             string p = $"insert into {newName} values ({r})";
             Connection.InsertCommand(p, parameters);
             foreach (var items in list)
             {
-                InsertItem(items);
+                InsertItem(items,primarykey1,Gtype);
             }
             foreach (var items in GenericList)
             {
-                InsertItem(items);
+                InsertItem(items,primarykey1,Gtype);
             }
         }
     }

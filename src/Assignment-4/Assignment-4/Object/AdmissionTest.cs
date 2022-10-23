@@ -8,10 +8,10 @@ namespace Assignment_4.Object
 {
     public class AdmissionTest:IGuid<int>
     {
+        public int Id { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public double TestFees { get; set; }
-        public int Id { get; set ; }
-        public int CourseId { get; set; }
+        
     }   
 }

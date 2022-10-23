@@ -24,19 +24,33 @@ namespace Assignment_4
             PropertyInfo[] property =Mtype.GetProperties();
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             string r = "";
+            object? primarykey=default;
 
             List<object> list = new List<object>();
             List<object> GenericList = new List<object>();
 
             for (int i=0;i<property.Length;i++)
             {
-                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid) || property[i].PropertyType == typeof(DateTime))
+                if (property[i].Name=="Id")
+                {
+                    object? result = property[i].GetValue(item);
+                    primarykey = result;
+                    
+                }
+                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
                 {
                     object? result = property[i].GetValue(item);
                     string n = property[i].Name;
                     parameters.Add($"{n}", result);
                     r += $"@{n},";
 
+                }
+                else if( property[i].PropertyType == typeof(DateTime))
+                {
+                    object? result = property[i].GetValue(item);
+                    string n = property[i].Name;
+                    parameters.Add($"{n}", result);
+                    r += $"@{n},";
                 }
                 else if (property[i].PropertyType == typeof(string))
                 {
@@ -56,24 +70,62 @@ namespace Assignment_4
                 }
                 else
                 {
-                    list.Add(property[i].GetValue(item)); 
+                    list.Add(property[i].GetValue(item));
+                    
                 }
                
             }
+
+            Type GType = typeof(G);
             string p = $"insert into {Name} values ({r})";
             Connection.InsertCommand(p, parameters);
             foreach(var items  in list)
+            {
+                NestestedClass.InsertItem(items,primarykey, GType);
+            }
+            foreach (var items in GenericList)
+            {
+                NestestedClass.InsertItem(items,primarykey, GType);
+            }
+        }
+        public void Delete(T item)
+        {
+            /*Type type = typeof(T);
+            string Name = type.Name;
+
+            PropertyInfo[] property= type.GetProperties();
+
+            for (int i = 0; i < property.Length; i++)
+            {
+                
+                else if (property[i].PropertyType.IsGenericType)
+                {
+                    object result = property[i].GetValue(item);
+                    foreach (var items in result as IList)
+                    {
+                        GenericList.Add(items);
+                    }
+                }
+                else
+                {
+                    list.Add(property[i].GetValue(item));
+                }
+
+            }
+            string p = $"insert into {Name} values ({r})";
+            Connection.InsertCommand(p, parameters);
+            foreach (var items in list)
             {
                 NestestedClass.InsertItem(items);
             }
             foreach (var items in GenericList)
             {
                 NestestedClass.InsertItem(items);
-            }
-        }
-        public void Delete(T item)
-        {
-            throw new NotImplementedException();
+            }*/
+
+
+
+
         }
 
         public void Delete(G id)
@@ -83,12 +135,25 @@ namespace Assignment_4
 
         public void GetAll()
         {
+            //object item = T as object;
             Type type = typeof(T);
+            object t = typeof(T);
+            void getObject(object item )
+            {
+
+            }
+
+            getObject(t);
+
+
             string newName = type.Name;
+            string fullName = type.FullName;
+            
             Console.WriteLine(newName);
             string query = $"select * from {newName}";
+            string getString = "";
             using SqlDataReader dataReader = Connection.ExecuteQuery(query);
-            while(dataReader.HasRows)
+            if(dataReader.HasRows)
             {
                 while(dataReader.Read())
                 {
@@ -115,6 +180,15 @@ namespace Assignment_4
 
                             para += $"{Name},";
                         }
+                        else if (property[i].PropertyType.IsGenericType)
+                        {
+                            object result = property[i].GetValue(fullName);
+                            foreach (var items in result as IList)
+                            {
+                                
+                            }
+
+                        }
 
                     }
                     int d = para.LastIndexOf(",");
@@ -138,7 +212,8 @@ namespace Assignment_4
 
                     foreach(var item in keyValue)
                     {
-                        Console.WriteLine(item.Key+" : "+item.Value);
+                        getString += item.Key + " : " + item.Value + "\n";
+                        
                     }
 
 
@@ -149,6 +224,7 @@ namespace Assignment_4
             //string q=r.Remove(d, 1);
             //r = q;
             //string p = $"Select {r} from {newName}";
+            Console.WriteLine(getString);
             
         }
 

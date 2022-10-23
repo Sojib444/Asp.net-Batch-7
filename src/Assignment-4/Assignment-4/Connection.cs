@@ -11,10 +11,9 @@ namespace Assignment_4
 {
     public class Connection
     {
-
         public static SqlConnection Getconnection()
         {
-           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Test;Trusted_Connection=True;"; ;
+           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Test1;Trusted_Connection=True;"; ;
         SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
@@ -96,6 +95,74 @@ namespace Assignment_4
             }
 
             return reader;
+        }
+
+        public static void DeleteQuery(string p)
+        {
+
+            try
+            {
+                var connection = Getconnection();
+                SqlCommand sqlCommand = new SqlCommand(p, connection);
+                SqlDataReader? reader1 = sqlCommand.ExecuteReader();
+
+                //if (reader.HasRows)
+                //{
+
+                //    while(reader.Read())
+                //    {
+                //        for(int i=0;i<reader.FieldCount;i++)
+                //        {
+                //            Console.Write(reader[i]+" ");
+
+                //        }
+                //        Console.WriteLine();
+                //    }
+                //}
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            
+        }
+
+
+        public int IdInfo(string p)
+        {
+            int id = 0;
+            try
+            {
+                var connection = Getconnection();
+                SqlCommand sqlCommand = new SqlCommand(p, connection);
+                SqlDataReader? reader = sqlCommand.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    int d = Convert.ToInt32(reader[0]);
+                    id = d;
+                    //while (reader.Read())
+                    //{
+                    //    for (int i = 0; i < reader.FieldCount; i++)
+                    //    {
+                    //        Console.Write(reader[i] + " ");
+
+                    //    }
+                    //    Console.WriteLine();
+                    //}
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return id;
+
         }
 
     }
