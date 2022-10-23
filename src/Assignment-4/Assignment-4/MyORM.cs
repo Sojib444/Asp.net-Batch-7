@@ -17,6 +17,10 @@ namespace Assignment_4
     {
         public void Insert(T item)
         {
+            if (item == null)
+            {
+                return;
+            }
             Type Mtype = item.GetType();
 
             string Name = Mtype.Name;
@@ -33,59 +37,88 @@ namespace Assignment_4
             {
                 if (property[i].Name=="Id")
                 {
-                    object? result = property[i].GetValue(item);
-                    primarykey = result;
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        primarykey = result;
+                    }
                     
                 }
                 if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
                 {
-                    object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
-                    parameters.Add($"{n}", result);
-                    r += $"@{n},";
-
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        string n = property[i].Name;
+                        parameters.Add($"{n}", result);
+                        r += $"@{n},";
+                    }
                 }
                 else if( property[i].PropertyType == typeof(DateTime))
                 {
-                    object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
-                    parameters.Add($"{n}", result);
-                    r += $"@{n},";
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        string n = property[i].Name;
+                        parameters.Add($"{n}", result);
+                        r += $"@{n},";
+                    }
                 }
                 else if (property[i].PropertyType == typeof(string))
                 {
+                    
                     object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
+                    if (result != null)
+                    {
+                        string n = property[i].Name;
 
-                    parameters.Add($"{n}", result);
-                    r += $"@{n},";
+                        parameters.Add($"{n}", result);
+                        r += $"@{n},";
+                    }
                 }
                 else if (property[i].PropertyType.IsGenericType)
                 {
+                   
                     object result = property[i].GetValue(item);
-                    foreach(var items in result as IList)
+                    if (result != null)
                     {
-                        GenericList.Add(items);
+                        foreach (var items in result as IList)
+                        {
+                            GenericList.Add(items);
+                        }
                     }
+                    
                 }
                 else
                 {
-                    list.Add(property[i].GetValue(item));
+                    if (property[i] != null)
+                    {
+                        list.Add(property[i].GetValue(item));
+                    }
                     
                 }
                
             }
 
             Type GType = typeof(G);
-            string p = $"insert into {Name} values ({r})";
-            Connection.InsertCommand(p, parameters);
+            if (Name != "" || r != "")
+            {
+                string p = $"insert into {Name} values ({r})";
+                Connection.InsertCommand(p, parameters);
+            }
             foreach(var items  in list)
             {
-                NestestedClass.InsertItem(items,primarykey, GType);
+                if (items != null)
+                {
+                    NestestedClass.InsertItem(items, primarykey, GType);
+                }
             }
             foreach (var items in GenericList)
             {
-                NestestedClass.InsertItem(items,primarykey, GType);
+                if (items != null)
+                {
+                    NestestedClass.InsertItem(items, primarykey, GType);
+                }
             }
         }
         public void Delete(T item)

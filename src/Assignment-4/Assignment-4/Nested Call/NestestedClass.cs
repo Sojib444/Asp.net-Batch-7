@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,6 +14,10 @@ namespace Assignment_4.Nested_Object
     {
         public static void InsertItem(object item,object primarykey,Type? Gtype=null)
         {
+            if(item==null)
+            {
+                return;
+            }
             Type type1 = item.GetType();
             string newName = type1.Name;
             PropertyInfo[] property = type1.GetProperties();
@@ -29,45 +34,66 @@ namespace Assignment_4.Nested_Object
             {
                 if (property[i].Name == "Id")
                 {
-                    object? result = property[i].GetValue(item);
-                    primarykey1 = result;
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        primarykey1 = result;
+                    }
 
                 }
                 if (property[i].PropertyType == typeof(DateTime)|| property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double))
                 {
-                    object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
-                    parameters.Add($"{n}", result);
-                    r += $"@{n},";
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        string n = property[i].Name;
+                        parameters.Add($"{n}", result);
+                        r += $"@{n},";
+                    }
 
                 }
                 else if (property[i].PropertyType == typeof(DateTime))
                 {
-                    object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
-                    parameters.Add($"{n}", result);
-                    r += $"@'{n}',";
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        string n = property[i].Name;
+                        parameters.Add($"{n}", result);
+                        r += $"@'{n}',";
+                    }
                 }
                 else if (property[i].PropertyType == typeof(string))
                 {
-                    object? result = property[i].GetValue(item);
-                    string n = property[i].Name;
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        string n = property[i].Name;
 
-                    parameters.Add($"{n}", result);
-                    r += $"@{n},";
+                        parameters.Add($"{n}", result);
+                        r += $"@{n},";
+                    }
                 }
                 else if (property[i].PropertyType.IsGenericType)
                 {
-                    object result = property[i].GetValue(item);
-                    foreach (var items in result as IList)
+                    if (property[i] != null)
                     {
-                        GenericList.Add(items);
-                        
+                        object result = property[i].GetValue(item);
+                        if (result != null)
+                        {
+                            foreach (var items in result as IList)
+                            {
+                                GenericList.Add(items);
+
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    list.Add(property[i].GetValue(item));
+                    if (property[i] != null)
+                    {
+                        list.Add(property[i].GetValue(item));
+                    }
                 }
 
             }
