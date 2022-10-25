@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Collections;
 using System.Xml.Linq;
 using Assignment_4.Nested_Object;
+using Assignment_4.Nested_Call;
 
 namespace Assignment_4
 {
@@ -123,41 +124,58 @@ namespace Assignment_4
         }
         public void Delete(T item)
         {
-            /*Type type = typeof(T);
+            Type type = typeof(T);
             string Name = type.Name;
 
             PropertyInfo[] property= type.GetProperties();
 
+            List<object> list = new List<object>();
+            List<object> GenericList = new List<object>();
+
+            Type GType = typeof(G);
+            object? primarykey = default;
+
             for (int i = 0; i < property.Length; i++)
             {
-                
-                else if (property[i].PropertyType.IsGenericType)
+                if (property[i].Name == "Id")
                 {
-                    object result = property[i].GetValue(item);
-                    foreach (var items in result as IList)
+                    if (property[i] != null)
                     {
-                        GenericList.Add(items);
+                        object? result = property[i].GetValue(item);
+                        primarykey = result;
                     }
+
                 }
-                else
+                if (property[i].PropertyType.IsGenericType)
                 {
-                    list.Add(property[i].GetValue(item));
+                    GenericList.Add(property[i]);
+                    
                 }
-
+                else if( property[i].PropertyType.IsClass && property[i].PropertyType != typeof(string))
+                {
+                    
+                   list.Add(property[i].GetValue(item));
+                    
+                }
             }
-            string p = $"insert into {Name} values ({r})";
-            Connection.InsertCommand(p, parameters);
-            foreach (var items in list)
-            {
-                NestestedClass.InsertItem(items);
-            }
-            foreach (var items in GenericList)
-            {
-                NestestedClass.InsertItem(items);
-            }*/
 
+            //foreach (var items in list)
+            //{
+            //    if (items != null)
+            //    {
+            //        DeleteItem.Delete(items, primarykey);
+            //    }
+            //}
+            //foreach (var items in GenericList)
+            //{
+            //    if (items != null)
+            //    {
+            //        DeleteItem.Delete(items, primarykey);
+            //    }
+            //}
 
-
+            string p = $"delete from {Name} where Id={primarykey}";
+            Connection.ExecuteQuery(p);
 
         }
 
@@ -185,74 +203,74 @@ namespace Assignment_4
             Console.WriteLine(newName);
             string query = $"select * from {newName}";
             string getString = "";
-            using SqlDataReader dataReader = Connection.ExecuteQuery(query);
-            if(dataReader.HasRows)
-            {
-                while(dataReader.Read())
-                {
-                    string values = "";
-                    for(int i=0;i<dataReader.FieldCount;i++)
-                    {
-                        values += $"{dataReader[i]},";
-                    }
+            Connection.ExecuteQuery(query);
+            //if(dataReader.HasRows)
+            //{
+            //    while(dataReader.Read())
+            //    {
+            //        string values = "";
+            //        for(int i=0;i<dataReader.FieldCount;i++)
+            //        {
+            //            values += $"{dataReader[i]},";
+            //        }
 
-                    PropertyInfo[] property = type.GetProperties();
-                    string para = "";
+            //        PropertyInfo[] property = type.GetProperties();
+            //        string para = "";
 
-                    for (int i = 0; i < property.Length; i++)
-                    {
-                        if (property[i].PropertyType == typeof(DateTime) || property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
-                        {
-                            string Name = property[i].Name;
-                            para += $"{Name},";
+            //        for (int i = 0; i < property.Length; i++)
+            //        {
+            //            if (property[i].PropertyType == typeof(DateTime) || property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
+            //            {
+            //                string Name = property[i].Name;
+            //                para += $"{Name},";
 
-                        }
-                        else if (property[i].PropertyType == typeof(string))
-                        {
-                            string Name = property[i].Name;
+            //            }
+            //            else if (property[i].PropertyType == typeof(string))
+            //            {
+            //                string Name = property[i].Name;
 
-                            para += $"{Name},";
-                        }
-                        else if (property[i].PropertyType.IsGenericType)
-                        {
-                            object result = property[i].GetValue(fullName);
-                            foreach (var items in result as IList)
-                            {
+            //                para += $"{Name},";
+            //            }
+            //            else if (property[i].PropertyType.IsGenericType)
+            //            {
+            //                object result = property[i].GetValue(fullName);
+            //                foreach (var items in result as IList)
+            //                {
                                 
-                            }
+            //                }
 
-                        }
+            //            }
 
-                    }
-                    int d = para.LastIndexOf(",");
-                    string q = para.Remove(d, 1);
-                    para = q;
+            //        }
+            //        int d = para.LastIndexOf(",");
+            //        string q = para.Remove(d, 1);
+            //        para = q;
 
-                    int c = values.LastIndexOf(",");
-                    string f = values.Remove(c, 1);
-                    values = f;
+            //        int c = values.LastIndexOf(",");
+            //        string f = values.Remove(c, 1);
+            //        values = f;
 
 
-                    string[] DName = para.Split(",");
-                    string[] Dvalues = values.Split(",");
+            //        string[] DName = para.Split(",");
+            //        string[] Dvalues = values.Split(",");
 
-                    Dictionary<string, string> keyValue = new Dictionary<string, string>();
+            //        Dictionary<string, string> keyValue = new Dictionary<string, string>();
 
-                    for(int i=0;i<DName.Length;i++)
-                    {
-                        keyValue.Add(DName[i], Dvalues[i]);
-                    }
+            //        for(int i=0;i<DName.Length;i++)
+            //        {
+            //            keyValue.Add(DName[i], Dvalues[i]);
+            //        }
 
-                    foreach(var item in keyValue)
-                    {
-                        getString += item.Key + " : " + item.Value + "\n";
+            //        foreach(var item in keyValue)
+            //        {
+            //            getString += item.Key + " : " + item.Value + "\n";
                         
-                    }
+            //        }
 
 
 
-                }
-            }
+            //    }
+            //}
             //int d = r.LastIndexOf(",");
             //string q=r.Remove(d, 1);
             //r = q;

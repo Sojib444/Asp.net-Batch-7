@@ -39,11 +39,15 @@ admissionTest.Id = 1;
 
 Topic topic = new Topic();
 
+Session session = new Session();
+session.Id = 1;
+
 
 
 
 MyORM<int, Course> type = new MyORM<int, Course>();
-type.Insert(course);
+//type.Insert(course);
+type.Delete(course);
 
 //type.GetAll();
 //type.GetById(2);

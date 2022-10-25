@@ -21,10 +21,10 @@ CourseId int foreign key references Course(Id));
 
 
 Create table Address (Id int primary key ,Street varchar(50),City varchar(100) ,Country varchar(100),
-TeacherId int foreign key references Instructor(Id));
+InstructorId int foreign key references Instructor(Id));
 
 Create table Phone (Id int primary key ,Number varchar(15),Extension varchar(5),CountryCode varchar(10),
-TeacherId int foreign key references Instructor(Id));
+InstructorId int foreign key references Instructor(Id));
 
 
 

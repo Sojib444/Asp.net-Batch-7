@@ -13,7 +13,7 @@ namespace Assignment_4
     {
         public static SqlConnection Getconnection()
         {
-           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Test1;Trusted_Connection=True;"; ;
+           string connectionString = "Server=DESKTOP-9P36ISK\\SQLEXPRESS;Database=Test2;Trusted_Connection=True;"; ;
         SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
@@ -62,30 +62,17 @@ namespace Assignment_4
             }
         }
 
-        public static SqlDataReader ExecuteQuery(string  p)
+        public static void ExecuteQuery(string  p)
         {
-
-            SqlDataReader? reader = null;
             try
             {
                 var connection = Getconnection();
                 SqlCommand sqlCommand = new SqlCommand(p, connection);
-                SqlDataReader? reader1 = sqlCommand.ExecuteReader();
-
-                //if (reader.HasRows)
-                //{
-
-                //    while(reader.Read())
-                //    {
-                //        for(int i=0;i<reader.FieldCount;i++)
-                //        {
-                //            Console.Write(reader[i]+" ");
-
-                //        }
-                //        Console.WriteLine();
-                //    }
-                //}
-                reader = reader1;
+                int n=sqlCommand.ExecuteNonQuery();
+                if(n==1)
+                {
+                    Console.WriteLine("Delete Successful");
+                }
 
                
             }
@@ -94,7 +81,7 @@ namespace Assignment_4
                 Console.WriteLine(ex.Message);
             }
 
-            return reader;
+            
         }
 
         public static void DeleteQuery(string p)
@@ -131,9 +118,9 @@ namespace Assignment_4
         }
 
 
-        public int IdInfo(string p)
+        public static object IdInfo(string p)
         {
-            int id = 0;
+            object id = 0;
             try
             {
                 var connection = Getconnection();
@@ -142,17 +129,11 @@ namespace Assignment_4
 
                 if (reader.HasRows)
                 {
-                    int d = Convert.ToInt32(reader[0]);
-                    id = d;
-                    //while (reader.Read())
-                    //{
-                    //    for (int i = 0; i < reader.FieldCount; i++)
-                    //    {
-                    //        Console.Write(reader[i] + " ");
-
-                    //    }
-                    //    Console.WriteLine();
-                    //}
+                    
+                    while (reader.Read())
+                    {
+                        id = reader[0];
+                    }
                 }
 
 
