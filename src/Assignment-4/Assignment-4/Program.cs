@@ -33,18 +33,6 @@ course.Tests = new List<AdmissionTest>() { new AdmissionTest(){ Id=1,StartDateTi
 course.Fees = 2000;
 
 
-AdmissionTest admissionTest = new AdmissionTest();
-admissionTest.StartDateTime = DateTime.Now;
-admissionTest.EndDateTime = DateTime.Now.AddDays(10);
-admissionTest.TestFees = 20;
-admissionTest.Id = 1;
-
-
-Topic topic = new Topic();
-
-Session session = new Session();
-session.Id = 1;
-
 
 
 
