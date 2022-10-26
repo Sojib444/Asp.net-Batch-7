@@ -4,9 +4,9 @@
     {
         void Insert(T item);
         void Update(T item);
-        void Delete(T item);
-        void Delete(G id);
-        void GetById(G id);
-        void GetAll();
+        //void Delete(T item);
+        //void Delete(G id);
+        //void GetById(G id);
+        //void GetAll();
     }
 }

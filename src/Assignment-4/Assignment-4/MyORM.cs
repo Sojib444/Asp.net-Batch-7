@@ -11,6 +11,7 @@ using System.Collections;
 using System.Xml.Linq;
 using Assignment_4.Nested_Object;
 using Assignment_4.Nested_Call;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Assignment_4
 {
@@ -92,7 +93,7 @@ namespace Assignment_4
                 }
                 else
                 {
-                    if (property[i] != null)
+                    if (property[i].PropertyType.IsClass && property[i].PropertyType!=typeof(string))
                     {
                         list.Add(property[i].GetValue(item));
                     }
@@ -148,7 +149,7 @@ namespace Assignment_4
                 }
                 if (property[i].PropertyType.IsGenericType)
                 {
-                    GenericList.Add(property[i]);
+                    GenericList.Add(property[i].GetValue(item));
                     
                 }
                 else if( property[i].PropertyType.IsClass && property[i].PropertyType != typeof(string))
@@ -159,140 +160,147 @@ namespace Assignment_4
                 }
             }
 
-            //foreach (var items in list)
+            //void GetObject(object item)
             //{
-            //    if (items != null)
-            //    {
-            //        DeleteItem.Delete(items, primarykey);
-            //    }
+            //    Type type = item.GetType();
+
             //}
-            //foreach (var items in GenericList)
-            //{
-            //    if (items != null)
-            //    {
-            //        DeleteItem.Delete(items, primarykey);
-            //    }
-            //}
+            foreach(var items in list)
+            {
+                DeleteItem.Delete(items,primarykey);
+
+            }
 
             string p = $"delete from {Name} where Id={primarykey}";
             Connection.ExecuteQuery(p);
 
         }
 
-        public void Delete(G id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetAll()
-        {
-            //object item = T as object;
-            Type type = typeof(T);
-            object t = typeof(T);
-            void getObject(object item )
-            {
-
-            }
-
-            getObject(t);
-
-
-            string newName = type.Name;
-            string fullName = type.FullName;
-            
-            Console.WriteLine(newName);
-            string query = $"select * from {newName}";
-            string getString = "";
-            Connection.ExecuteQuery(query);
-            //if(dataReader.HasRows)
-            //{
-            //    while(dataReader.Read())
-            //    {
-            //        string values = "";
-            //        for(int i=0;i<dataReader.FieldCount;i++)
-            //        {
-            //            values += $"{dataReader[i]},";
-            //        }
-
-            //        PropertyInfo[] property = type.GetProperties();
-            //        string para = "";
-
-            //        for (int i = 0; i < property.Length; i++)
-            //        {
-            //            if (property[i].PropertyType == typeof(DateTime) || property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
-            //            {
-            //                string Name = property[i].Name;
-            //                para += $"{Name},";
-
-            //            }
-            //            else if (property[i].PropertyType == typeof(string))
-            //            {
-            //                string Name = property[i].Name;
-
-            //                para += $"{Name},";
-            //            }
-            //            else if (property[i].PropertyType.IsGenericType)
-            //            {
-            //                object result = property[i].GetValue(fullName);
-            //                foreach (var items in result as IList)
-            //                {
-                                
-            //                }
-
-            //            }
-
-            //        }
-            //        int d = para.LastIndexOf(",");
-            //        string q = para.Remove(d, 1);
-            //        para = q;
-
-            //        int c = values.LastIndexOf(",");
-            //        string f = values.Remove(c, 1);
-            //        values = f;
-
-
-            //        string[] DName = para.Split(",");
-            //        string[] Dvalues = values.Split(",");
-
-            //        Dictionary<string, string> keyValue = new Dictionary<string, string>();
-
-            //        for(int i=0;i<DName.Length;i++)
-            //        {
-            //            keyValue.Add(DName[i], Dvalues[i]);
-            //        }
-
-            //        foreach(var item in keyValue)
-            //        {
-            //            getString += item.Key + " : " + item.Value + "\n";
-                        
-            //        }
 
 
 
-            //    }
-            //}
-            //int d = r.LastIndexOf(",");
-            //string q=r.Remove(d, 1);
-            //r = q;
-            //string p = $"Select {r} from {newName}";
-            Console.WriteLine(getString);
-            
-        }
 
-        public void GetById(G id)
-        {
-           Type type=typeof(T);
-            string name=type.Name;
-            Console.WriteLine(name);
-
-               
-        }
-
-       
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+            {
+                return;
+            }
+            Type Mtype = item.GetType();
+
+            string Name = Mtype.Name;
+
+            PropertyInfo[] property = Mtype.GetProperties();
+            string s = "";
+            string v = "";
+            object? primarykey = default;
+
+            List<object> list = new List<object>();
+            List<object> GenericList = new List<object>();
+
+            for (int i = 0; i < property.Length; i++)
+            {
+                if (property[i].Name == "Id")
+                {
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        primarykey = result;
+                    }
+
+                }
+                if (property[i].PropertyType == typeof(int) || property[i].PropertyType == typeof(double) || property[i].PropertyType == typeof(Guid))
+                {
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        if(result !=null)
+                        {
+                            s += $"{property[i].Name},";
+                            v += $"{result},";
+                        }
+                    }
+                }
+                else if (property[i].PropertyType == typeof(DateTime))
+                {
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        if (result != null)
+                        {
+                            s += $"{property[i].Name},";
+                            v += $"'{result}',";
+                        }
+                    }
+                }
+                else if (property[i].PropertyType == typeof(string))
+                {
+                    if (property[i] != null)
+                    {
+                        object? result = property[i].GetValue(item);
+                        if (result != null)
+                        {
+                            s += $"{property[i].Name},";
+                            v += $"'{result}',";
+                        }
+                    }
+                }
+                else if (property[i].PropertyType.IsGenericType)
+                {
+
+                    object result = property[i].GetValue(item);
+                    if (result != null)
+                    {
+                        foreach (var items in result as IList)
+                        {
+                            GenericList.Add(items);
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (property[i].PropertyType.IsClass && property[i].PropertyType != typeof(string))
+                    {
+                        list.Add(property[i].GetValue(item));
+                    }
+
+                }
+            }
+
+            string q = s.Remove(s.LastIndexOf(","), 1);
+            s = q;
+            string t = v.Remove(v.LastIndexOf(","), 1);
+            v = t;
+            Dictionary<string, object> keyValues = new Dictionary<string, object>();
+            string[] arr = s.Split(",");
+            string[] brr = v.Split(",");
+
+            for(int i=0;i<arr.Length;i++)
+            {
+                keyValues.Add(arr[i],brr[i]);
+            }
+
+            string p = "";
+            foreach(var items in keyValues)
+            {
+                p += $"{items.Key}={items.Value},";
+                
+            }
+            string u = p.Remove(p.LastIndexOf(","), 1);
+            p = u;
+            string query = $"update {Name} set {p} where Id={primarykey}";
+            Connection.UpdateQuery(query);
+
+            foreach(var items in list)
+            {
+                UpdateItem.Update(items);
+            }
+            foreach (var items in GenericList)
+            {
+                UpdateItem.Update(items);
+            }
         }
     }
 }

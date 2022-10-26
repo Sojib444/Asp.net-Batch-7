@@ -10,18 +10,21 @@ namespace Assignment_4.Nested_Call
 {
     public class DeleteItem
     {
-        public static void Delete(object item,object primarykey)
+        public static void Delete(object item,object primarykey,string? nesteditem=null)
         {
+            if(item==null)
+            {
+                return;
+            }
             Type type=item.GetType();
 
-            string Name = type.Name;
+            string? Name = null;
+            object? primarykey1 = null;
 
             PropertyInfo[] property = type.GetProperties();
 
             List<object> list = new List<object>();
             List<object> GenericList = new List<object>();
-
-            object? primarykey1 = default;
 
             for (int i = 0; i < property.Length; i++)
             {
@@ -36,44 +39,33 @@ namespace Assignment_4.Nested_Call
                 }
                 if (property[i].PropertyType.IsGenericType)
                 {
-                    if (property[i] != null)
-                    {
-                        object result = property[i].GetValue(item);
-                        if (result != null)
-                        {
-                            foreach (var items in result as IList)
-                            {
-                                GenericList.Add(items);
+                    GenericList.Add(property[i]);
+                    Name = type.Name;
 
-                            }
-                        }
-                    }
                 }
                 else if (property[i].PropertyType.IsClass && property[i].PropertyType != typeof(string))
                 {
-                    if (property[i] != null)
-                    {
-                        list.Add(property[i].GetValue(item));
-                    }
+
+                    list.Add(property[i]);
+                    Name = type.Name;
+
                 }
             }
-
+            
             foreach (var items in list)
             {
-                if (items != null)
-                {
-                    DeleteItem.Delete(items, primarykey1);
-                }
+                Type type1 = items.GetType();
+                DeleteItem.Delete(items, primarykey1,Name);
             }
             foreach (var items in GenericList)
             {
                 if (items != null)
                 {
-                    DeleteItem.Delete(items, primarykey1);
+                    DeleteItem.Delete(items, primarykey1, Name);
                 }
             }
 
-            string p = $"delete from {Name} where {Name}Id={primarykey}";
+            string p = $"delete from {type.Name} where {nesteditem}Id={primarykey}";
             Connection.ExecuteQuery(p);
         }
     }

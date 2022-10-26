@@ -37,7 +37,7 @@ namespace Assignment_4
             {
                 string q = p.Remove(p.Length - 2, 1);
                 p = q;
-            }
+            }   
             using var connection = Getconnection();
             using SqlCommand sqlCommand = new SqlCommand(p, connection);
             
@@ -83,29 +83,49 @@ namespace Assignment_4
 
             
         }
-
-        public static void DeleteQuery(string p)
+        public static void UpdateQuery(string p)
         {
-
             try
             {
                 var connection = Getconnection();
                 SqlCommand sqlCommand = new SqlCommand(p, connection);
-                SqlDataReader? reader1 = sqlCommand.ExecuteReader();
+                int n = sqlCommand.ExecuteNonQuery();
+                if (n == 1)
+                {
+                    Console.WriteLine("Update Successful");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-                //if (reader.HasRows)
-                //{
 
-                //    while(reader.Read())
-                //    {
-                //        for(int i=0;i<reader.FieldCount;i++)
-                //        {
-                //            Console.Write(reader[i]+" ");
+        }
 
-                //        }
-                //        Console.WriteLine();
-                //    }
-                //}
+        public static SqlDataReader getqueryQuery(string p)
+        {
+
+            SqlDataReader reader1 = null;
+            try
+            {
+                var connection = Getconnection();
+                SqlCommand sqlCommand = new SqlCommand(p, connection);
+                SqlDataReader? reader = sqlCommand.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader1 = reader;
+                    //while (reader.Read())
+                    //{
+                    //    for (int i = 0; i < reader.FieldCount; i++)
+                    //    {
+                    //        Console.Write(reader[i] + " ");
+
+                    //    }
+                    //    Console.WriteLine();
+                    //}
+                }
 
 
             }
@@ -113,6 +133,7 @@ namespace Assignment_4
             {
                 Console.WriteLine(ex.Message);
             }
+            return reader1;
 
             
         }
