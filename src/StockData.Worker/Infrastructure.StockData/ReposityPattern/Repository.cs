@@ -15,7 +15,7 @@ namespace Infrastructure.StockData.ReposityPattern
         {
             _dbset = dbset.Set<T>();
         }
-        public void Add(T Entity)
+        public virtual void Add(T Entity)
         {
             _dbset.Add(Entity);
         }

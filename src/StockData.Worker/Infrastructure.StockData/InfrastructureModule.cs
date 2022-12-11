@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Infrastructure.StockData.ORM;
 using Infrastructure.StockData.ReposityPattern;
+using Infrastructure.StockData.UnifOfWork;
 
 namespace Infrastructure.StockData
 {
@@ -25,6 +26,8 @@ namespace Infrastructure.StockData
                 .WithParameter("assemblyname", AssemblyName)
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<ApplicationUniofWork>().As<IApplicationUnitofWork>()
+                .InstancePerLifetimeScope();
             base.Load(builder);
         }
     }
