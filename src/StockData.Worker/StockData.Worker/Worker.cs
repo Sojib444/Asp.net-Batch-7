@@ -27,9 +27,9 @@ namespace StockData.Worker
             _scope = scope;
         }
 
-        public string url { get; set; } 
-        public HtmlWeb website { get; set; } 
-        public HtmlDocument doc { get; set; } 
+        public string url { get; set; }
+        public HtmlWeb website { get; set; }
+        public HtmlDocument doc { get; set; }
         public override Task StartAsync(CancellationToken cancellationToken)
         {
             url = "https://www.dse.com.bd/latest_share_price_scroll_l.php";
@@ -62,23 +62,13 @@ namespace StockData.Worker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                var url = "https://www.dse.com.bd/latest_share_price_scroll_l.php";
-                var web = new HtmlWeb();
-                var doc = web.Load(url);
-
                 var statusNodeText = doc.DocumentNode.SelectSingleNode("//span[@class='green']").InnerText;
-                var tableNodes = doc.DocumentNode.SelectNodes("//table[@class='table table-bordered background-white shares-table fixedHeader']//tr");
+                var tableNodes = doc.DocumentNode.SelectNodes("//table[@class='table table-bordered " +
+                    "background-white shares-table fixedHeader']//tr");
 
                 if (statusNodeText == "Closed")
                 {
-                    var companyCode = WorkerMethod.InsertCompany(tableNodes, doc);
-                    for (int i = 0; i < companyCode.Count; i++)
-                    {
-                        CompanyWeb cweb = new CompanyWeb();
-                        cweb.TradeCode = companyCode[i];
-                        var bCompany = _mapper.Map<BCompany>(cweb);
-                        _companyService.Add(bCompany);
-                    }
+                    WorkerMethod.getStokprices(tableNodes, doc);
                 }
                 else
                 {

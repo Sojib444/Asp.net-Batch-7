@@ -19,6 +19,12 @@ namespace Infrastructure.StockData.ORM
                 .HasIndex(u => u.TradeCode)
                 .IsUnique();
 
+            modelBuilder.Entity<Company>()
+                .Property(u => u.Id)
+                .ValueGeneratedOnAdd();
+
+
+
             base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
