@@ -1,4 +1,5 @@
 ﻿using Infrastructure.StockData.ORM;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,14 @@ namespace Infrastructure.StockData.UnifOfWork
 
         public void Save()
         {
-           DbContext.SaveChanges();
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Log.Write(Serilog.Events.LogEventLevel.Verbose, ex.Message);
+            }
         }
     }
 }

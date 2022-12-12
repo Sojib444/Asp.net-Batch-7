@@ -8,6 +8,6 @@ namespace StockData.Worker.Model
 {
     public class CompanyWeb : ICompanyWeb
     {
-        public string TradeCode { get => "Sojib"; set => throw new NotImplementedException(); }
+        public  string TradeCode { get; set; }
     }
 }

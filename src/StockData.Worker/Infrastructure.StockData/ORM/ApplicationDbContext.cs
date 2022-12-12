@@ -1,27 +1,29 @@
 ﻿using Infrastructure.StockData.Entiies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.StockData.ORM
 {
-    public class ApplicationDbContext:DbContext,IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        private  string ConnectionString { get; set; }
-        private  string AssemblyName { get; set; }
+        private string ConnectionString { get; set; }
+        private string AssemblyName { get; set; }
         public ApplicationDbContext(string conncetionstring, string assemblyname)
         {
             ConnectionString = conncetionstring;
             AssemblyName = assemblyname;
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Company>()
+                .HasIndex(u => u.TradeCode)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if(!optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(ConnectionString, e =>
                 {

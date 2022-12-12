@@ -1,7 +1,10 @@
 using Autofac;
 using AutoMapper;
+using HtmlAgilityPack;
 using Infrastructure.StockData.Buisness_Object;
 using Infrastructure.StockData.Service;
+using Serilog;
+using Serilog.Events;
 using StockData.Worker.Model;
 
 namespace StockData.Worker
@@ -14,8 +17,8 @@ namespace StockData.Worker
         private readonly ICompanyWeb web;
         private readonly ILifetimeScope _scope;
 
-        public Worker(ILogger<Worker> logger,ICompanyService companyService,IMapper mapper,
-            ICompanyWeb web,ILifetimeScope scope)
+        public Worker(ILogger<Worker> logger, ICompanyService companyService, IMapper mapper,
+            ICompanyWeb web, ILifetimeScope scope)
         {
             _logger = logger;
             _companyService = companyService;
@@ -24,16 +27,69 @@ namespace StockData.Worker
             _scope = scope;
         }
 
+        public string url { get; set; } 
+        public HtmlWeb website { get; set; } 
+        public HtmlDocument doc { get; set; } 
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            url = "https://www.dse.com.bd/latest_share_price_scroll_l.php";
+            website = new HtmlWeb();
+            Console.WriteLine("Hi");
+            doc = website.Load(url);
+
+            var htmlNodes = doc.DocumentNode.SelectNodes("//table[@class='table table-bordered " +
+                        "background-white shares-table fixedHeader']//tr");
+
+            var companyCode = WorkerMethod.InsertCompany(htmlNodes, doc);
+
+            if (companyCode.Count > 390)
+            {
+                for (int i = 0; i < companyCode.Count; i++)
+                {
+                    CompanyWeb cweb = new CompanyWeb();
+                    cweb.TradeCode = companyCode[i];
+                    var bCompany = _mapper.Map<BCompany>(cweb);
+                    _companyService.Add(bCompany);
+                }
+            }
+
+
+            return base.StartAsync(cancellationToken);
+
+        }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var bCompany=_mapper.Map<BCompany>(web);
-            _companyService.Add(bCompany);
-            
-            //while (!stoppingToken.IsCancellationRequested)
-            //{
-            //    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            //    await Task.Delay(1000, stoppingToken);
-            //}
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                var url = "https://www.dse.com.bd/latest_share_price_scroll_l.php";
+                var web = new HtmlWeb();
+                var doc = web.Load(url);
+
+                var statusNodeText = doc.DocumentNode.SelectSingleNode("//span[@class='green']").InnerText;
+                var tableNodes = doc.DocumentNode.SelectNodes("//table[@class='table table-bordered background-white shares-table fixedHeader']//tr");
+
+                if (statusNodeText == "Closed")
+                {
+                    var companyCode = WorkerMethod.InsertCompany(tableNodes, doc);
+                    for (int i = 0; i < companyCode.Count; i++)
+                    {
+                        CompanyWeb cweb = new CompanyWeb();
+                        cweb.TradeCode = companyCode[i];
+                        var bCompany = _mapper.Map<BCompany>(cweb);
+                        _companyService.Add(bCompany);
+                    }
+                }
+                else
+                {
+                    Log.Write(LogEventLevel.Warning, "Market is closed");
+                }
+
+                await Task.Delay(1000, stoppingToken);
+            }
         }
+
+
+
     }
 }

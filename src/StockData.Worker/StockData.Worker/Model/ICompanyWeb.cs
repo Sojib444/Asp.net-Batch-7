@@ -8,6 +8,6 @@ namespace StockData.Worker.Model
 {
     public interface ICompanyWeb
     {
-        string TradeCode { get; set; }
+         string TradeCode { get; set; }
     }
 }
