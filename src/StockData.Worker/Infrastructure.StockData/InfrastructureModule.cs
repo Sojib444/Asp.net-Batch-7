@@ -42,7 +42,12 @@ namespace Infrastructure.StockData
 
             builder.RegisterType<CompnayRepository>().As<ICompanyRepository>()
                .InstancePerLifetimeScope();
-            builder.RegisterType<StokePriceService>().AsSelf();
+
+            builder.RegisterType<StockPriceRerpository>().As<IStockPriceRepository>()
+              .InstancePerLifetimeScope();
+
+            builder.RegisterType<StokePriceService>().As<IStockPriceService>()
+              .InstancePerLifetimeScope();
 
             base.Load(builder);
         }

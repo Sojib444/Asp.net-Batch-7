@@ -8,7 +8,6 @@ namespace Infrastructure.StockData.Buisness_Object
 {
     public class BStokePrice : IBStokePrice
     {
-        public int CompanyId { get; set; }
         public double LastTradingPrice { get; set; }
         public double High { get; set; }
         public double Low { get; set; }
