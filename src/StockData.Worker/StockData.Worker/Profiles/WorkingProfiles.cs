@@ -12,6 +12,7 @@ namespace StockData.Worker.Profiles
             CreateMap<BCompany, Company>().ReverseMap();
             CreateMap<BStokePrice, StockPrice>().ReverseMap();
             CreateMap<CompanyWeb, BCompany>().ReverseMap();
+            CreateMap<StockPriceWeb, BStokePrice>().ReverseMap();
         }
     }
 }
