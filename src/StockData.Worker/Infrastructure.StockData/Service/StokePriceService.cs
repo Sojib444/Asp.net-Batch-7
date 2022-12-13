@@ -6,7 +6,7 @@ using Infrastructure.StockData.UnifOfWork;
 
 namespace Infrastructure.StockData.Service
 {
-    public class StokePriceService
+    public class StokePriceService:IStockPriceService
     {
         public StokePriceService(IBStokePrice company, IMapper mapper, IStockPriceRepository companyRepository,
             IApplicationUnitofWork _applicationUnitofWork)

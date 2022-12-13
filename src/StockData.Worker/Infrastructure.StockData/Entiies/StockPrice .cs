@@ -21,7 +21,7 @@ namespace Infrastructure.StockData.Entiies
         public double Trade { get; set; }
         public double Value { get; set; }
         public double Volume { get; set; }
-        public DateTime DateTime { get => DateTime.UtcNow; set=>value=DateTime.UtcNow; }
+        public DateTime DateTime { get => DateTime.Now.Date; set=>value= DateTime.Now.Date; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
     }

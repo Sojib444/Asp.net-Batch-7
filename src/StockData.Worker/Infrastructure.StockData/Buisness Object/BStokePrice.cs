@@ -17,5 +17,6 @@ namespace Infrastructure.StockData.Buisness_Object
         public double Trade { get; set; }
         public double Value { get; set; }
         public double Volume { get; set; }
+        public string CompanyId { get ; set; }
     }
 }

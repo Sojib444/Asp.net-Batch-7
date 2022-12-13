@@ -4,7 +4,7 @@
     {
         double Change { get; set; }
         double ClosePrice { get; set; }
-        int CompanyId { get; set; }
+        string CompanyId { get; set; }
         double High { get; set; }
         double LastTradingPrice { get; set; }
         double Low { get; set; }
