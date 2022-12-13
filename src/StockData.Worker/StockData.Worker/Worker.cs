@@ -114,13 +114,5 @@ namespace StockData.Worker
             }
         }
 
-        public override Task StopAsync(CancellationToken cancellationToken)
-        {
-            Log.Write(LogEventLevel.Information,"Worker is Closed");
-            return base.StopAsync(cancellationToken);
-        }
-
-
-
     }
 }

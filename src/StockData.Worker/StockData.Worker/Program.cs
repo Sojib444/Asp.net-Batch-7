@@ -13,13 +13,13 @@ var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", f
                 .AddEnvironmentVariables()
                 .Build();
 
-var connectionstring = "Server=.\\SQLEXPRESS;Database=StokeAndExhange;Trusted_Connection=True;TrustServerCertificate=True;";
+var connectionstring = "Server=DESKTOP-O5SR0H0\\SQLEXPRESS;Database=StokeAndExhange; User Id=sa; Password=1312659116;";
 var assemblyName =typeof(Worker).Assembly.FullName;
 
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                  .MinimumLevel.Override("Microsof", LogEventLevel.Warning)
-                 .WriteTo.File("Logs/log.log", rollingInterval: RollingInterval.Day)
+                 .WriteTo.File("E:/Logs/log.log", rollingInterval: RollingInterval.Day)
                  .CreateLogger();
 
 try
