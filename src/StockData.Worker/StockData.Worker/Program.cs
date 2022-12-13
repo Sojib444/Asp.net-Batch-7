@@ -36,6 +36,7 @@ try
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         })
+        .UseWindowsService()
         .UseSerilog()
         .UseServiceProviderFactory(new AutofacServiceProviderFactory())
         .ConfigureContainer<ContainerBuilder>(optios =>
