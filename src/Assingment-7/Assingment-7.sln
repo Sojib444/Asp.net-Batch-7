@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQS Operation", "SQS Operation\SQS Operation.csproj", "{4911D468-58E3-4333-8660-063C3B5049A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4911D468-58E3-4333-8660-063C3B5049A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4911D468-58E3-4333-8660-063C3B5049A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4911D468-58E3-4333-8660-063C3B5049A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4911D468-58E3-4333-8660-063C3B5049A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {241FE66D-DB3A-4CBB-853F-B0C70826A941}
+	EndGlobalSection
+EndGlobal
