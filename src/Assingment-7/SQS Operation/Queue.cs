@@ -6,7 +6,6 @@ namespace SQS_Operation
 {
     public class Queue
     {
-
         private ReceiveMessageResponse? readMassage { get; set; }
         private BasicAWSCredentials Creadential(string acccesskey, string secretKey)
         {
