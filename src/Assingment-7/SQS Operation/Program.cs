@@ -1,7 +1,4 @@
-﻿
-
-using SQS_Operation;
-
+﻿using SQS_Operation;
 
 string? accessKey = "AKIAUPSWFFBGHYUUXMZD";
 string? secrectkey = "jDQN6v/QHkXZm/xdUMWp2eAeWLE+U1UNfE172ueM";

@@ -6,7 +6,7 @@ namespace SQS_Operation
 {
     public class Queue
     {
-        public BasicAWSCredentials Creadential(string acccesskey, string secretKey)
+        private BasicAWSCredentials Creadential(string acccesskey, string secretKey)
         {
             BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(acccesskey, secretKey);
 
