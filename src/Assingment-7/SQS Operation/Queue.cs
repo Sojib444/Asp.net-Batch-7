@@ -1,13 +1,11 @@
 ﻿using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
-using System.Net;
 
 namespace SQS_Operation
 {
     public class Queue
     {
-
         public BasicAWSCredentials Creadential(string acccesskey, string secretKey)
         {
             BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(acccesskey, secretKey);
@@ -15,11 +13,11 @@ namespace SQS_Operation
             return basicAWSCredentials;
         }
 
-        public async  Task AddMassage(string acccesskey, string secretKey, string url, String massage)
+        public async Task AddMassage(string acccesskey, string secretKey, string url, string massage)
         {
             var credential = Creadential(acccesskey, secretKey);
 
-            AmazonSQSClient client = new AmazonSQSClient(credential, Amazon.RegionEndpoint.APSouth1);
+            using AmazonSQSClient client = new AmazonSQSClient(credential, Amazon.RegionEndpoint.APSouth1);
 
             var sendMessageRequest = new SendMessageRequest
             {
@@ -33,26 +31,44 @@ namespace SQS_Operation
 
         }
 
-
-        public async Task CreateQueueExample(string acccesskey, string secretKey)
+        public async Task Receivemassage(string acccesskey, string secretKey, string url)
         {
             var credential = Creadential(acccesskey, secretKey);
 
-            AmazonSQSClient client = new AmazonSQSClient(credential,Amazon.RegionEndpoint.APSouth1);
+            AmazonSQSClient client = new AmazonSQSClient(credential, Amazon.RegionEndpoint.APSouth1);
 
-            var request = new CreateQueueRequest
+            var receiveMessageRequest = new ReceiveMessageRequest
             {
-                QueueName = "SQS_QUEUE",
-                Attributes = new Dictionary<string, string>
-                {
-                    { "DelaySeconds", "60"},
-                    { "MessageRetentionPeriod", "86400"}
-                }
+                AttributeNames = { "SentTimestamp" },
+                MaxNumberOfMessages = 10,
+                MessageAttributeNames = { "All" },
+                QueueUrl = url,
+                VisibilityTimeout = 0,
+                WaitTimeSeconds = 0
             };
 
+            var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
 
-            var response = await client.CreateQueueAsync(request);
-            Console.WriteLine("Created a queue with URL : {0}", response.QueueUrl);
+            foreach (var item in receiveMessageResponse.Messages)
+            {
+                Console.WriteLine(item.Body);
+            }
+
+            Console.WriteLine("\nNow I am  deleting this read Massage...");
+
+            foreach (var item in receiveMessageResponse.Messages)
+            {
+                var deleteMessageRequest = new DeleteMessageRequest
+                {
+                    QueueUrl = url,
+                    ReceiptHandle = item.ReceiptHandle
+                };
+
+                await client.DeleteMessageAsync(deleteMessageRequest);
+            }
+
+            Console.WriteLine(" \n Massage Deleted Successfully");
         }
     }
 }
+
