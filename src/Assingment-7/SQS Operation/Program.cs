@@ -8,6 +8,8 @@ string massage = $"Hi this Sojib.I send a have to send a massage in queue at {Da
 Queue queue = new Queue();
 
 await queue.AddMassage(accessKey,secrectkey, queueURl, massage);
+
+//this two method need execute at a time for deleeting read masage
 await queue.Receivemassage(accessKey, secrectkey, queueURl);
 await queue.DeleteReadMassage(accessKey, secrectkey, queueURl);
 
