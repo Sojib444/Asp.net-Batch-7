@@ -6,6 +6,8 @@ namespace SQS_Operation
 {
     public class Queue
     {
+
+        private ReceiveMessageResponse? readMassage { get; set; }
         private BasicAWSCredentials Creadential(string acccesskey, string secretKey)
         {
             BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(acccesskey, secretKey);
@@ -48,26 +50,34 @@ namespace SQS_Operation
             };
 
             var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
+            readMassage = receiveMessageResponse;
 
             foreach (var item in receiveMessageResponse.Messages)
             {
                 Console.WriteLine(item.Body);
-            }
+            } 
+        }
 
-            Console.WriteLine("\nNow I am  deleting this read Massage...");
+        public async Task DeleteReadMassage(string acccesskey, string secretKey, string url)
+        {
+            var credential = Creadential(acccesskey, secretKey);
 
-            foreach (var item in receiveMessageResponse.Messages)
+            AmazonSQSClient client = new AmazonSQSClient(credential, Amazon.RegionEndpoint.APSouth1);
+
+            if (readMassage.Messages.Count > 0)
             {
-                var deleteMessageRequest = new DeleteMessageRequest
+                foreach (var message in readMassage.Messages)
                 {
-                    QueueUrl = url,
-                    ReceiptHandle = item.ReceiptHandle
-                };
+                    var deleteMessageRequest = new DeleteMessageRequest
+                    {
+                        QueueUrl = url,
+                        ReceiptHandle = message.ReceiptHandle
+                    };
 
-                await client.DeleteMessageAsync(deleteMessageRequest);
+                    await client.DeleteMessageAsync(deleteMessageRequest);
+                }
             }
 
-            Console.WriteLine(" \n Massage Deleted Successfully");
         }
     }
 }
