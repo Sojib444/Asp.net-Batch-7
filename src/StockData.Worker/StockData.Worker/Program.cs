@@ -7,19 +7,18 @@ using Serilog;
 using Serilog.Events;
 using StockData.Worker;
 using StockData.Worker.WebModule;
-using System.Reflection;
 
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false)
                 .AddEnvironmentVariables()
                 .Build();
 
-var connectionstring = "Server=DESKTOP-O5SR0H0\\SQLEXPRESS;Database=StokeAndExhange; User Id=sa; Password=1312659116;";
-var assemblyName =typeof(Worker).Assembly.FullName;
+var connectionstring = "Server=.\\SQLEXPRESS;Database=Scraping;Trusted_Connection=True;TrustServerCertificate=true;";
+var assemblyName = typeof(Worker).Assembly.FullName;
 
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                  .MinimumLevel.Override("Microsof", LogEventLevel.Warning)
-                 .WriteTo.File("E:/Logs/log.log", rollingInterval: RollingInterval.Day)
+                 .WriteTo.File("E:\\Software Enginering\\Devskill\\Project\\Asp.net-Batch-7\\src/Logs/log.log", rollingInterval: RollingInterval.Day)
                  .CreateLogger();
 
 try
